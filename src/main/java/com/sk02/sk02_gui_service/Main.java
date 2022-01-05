@@ -9,10 +9,8 @@ import com.sk02.sk02_gui_service.view.client.dialogs.ReservationsClientDialog;
 import com.sk02.sk02_gui_service.view.client.dialogs.reviews.AddReviewDialog;
 import com.sk02.sk02_gui_service.view.client.dialogs.reviews.EditReviewDialog;
 import com.sk02.sk02_gui_service.view.client.dialogs.reviews.MyReviewsDialog;
-import com.sk02.sk02_gui_service.view.manager.dialogs.EditHotelDialog;
-import com.sk02.sk02_gui_service.view.manager.dialogs.EditProfileManagerDialog;
-import com.sk02.sk02_gui_service.view.manager.dialogs.EditRoomTypeDialog;
-import com.sk02.sk02_gui_service.view.manager.dialogs.ReservationsManagerDialog;
+import com.sk02.sk02_gui_service.view.manager.ManagerView;
+import com.sk02.sk02_gui_service.view.manager.dialogs.*;
 import com.sk02.sk02_gui_service.view.shared.NotificationsDialog;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -34,7 +32,9 @@ public class Main extends Application {
 //        new ReservationsClientDialog().show();
 //        new ReservationsManagerDialog().show();
 //        new NotificationsDialog().show();
-        ClientView.getInstance().show();
+//        ClientView.getInstance().show();
+//        ManagerView.getInstance().show();
+        new RoomTypesDialog().show();
     }
 
     public static void main(String[] args) {
