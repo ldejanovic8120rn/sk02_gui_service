@@ -170,4 +170,48 @@ public class RegisterView extends Stage {
             }
         });
     }
+
+    public TextField getTfFirstName() {
+        return tfFirstName;
+    }
+
+    public TextField getTfLastName() {
+        return tfLastName;
+    }
+
+    public TextField getTfUsername() {
+        return tfUsername;
+    }
+
+    public TextField getTfPassword() {
+        return tfPassword;
+    }
+
+    public TextField getTfEmail() {
+        return tfEmail;
+    }
+
+    public TextField getTfPhone() {
+        return tfPhone;
+    }
+
+    public DatePicker getDpBirthday() {
+        return dpBirthday;
+    }
+
+    public TextField getTfUserSensitive() {
+        return tfUserSensitive;
+    }
+
+    public Label getLblUserSensitive() {
+        return lblUserSensitive;
+    }
+
+    public RadioButton getRadioClient() {
+        return radioClient;
+    }
+
+    public RadioButton getRadioManager() {
+        return radioManager;
+    }
 }

@@ -106,4 +106,20 @@ public class RoomTypesDialog extends Stage {
         scene.getStylesheets().add("styles/style.css");
         setScene(scene);
     }
+
+    public TextField getTfCategory() {
+        return tfCategory;
+    }
+
+    public TextField getTfPrice() {
+        return tfPrice;
+    }
+
+    public TextField getTfLowerB() {
+        return tfLowerB;
+    }
+
+    public TextField getTfUpperB() {
+        return tfUpperB;
+    }
 }

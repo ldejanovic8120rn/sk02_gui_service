@@ -94,4 +94,16 @@ public class AddReviewDialog extends Stage {
         scene.getStylesheets().add("styles/style.css");
         setScene(scene);
     }
+
+    public ComboBox getCbHotels() {
+        return cbHotels;
+    }
+
+    public TextArea getTaComment() {
+        return taComment;
+    }
+
+    public Slider getSliderRating() {
+        return sliderRating;
+    }
 }

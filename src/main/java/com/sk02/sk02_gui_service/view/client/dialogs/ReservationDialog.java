@@ -73,4 +73,24 @@ public class ReservationDialog extends Stage {
         scene.getStylesheets().add("styles/style.css");
         setScene(scene);
     }
+
+    public Label getLblHotel() {
+        return lblHotel;
+    }
+
+    public Label getLblDescription() {
+        return lblDescription;
+    }
+
+    public Label getLblCity() {
+        return lblCity;
+    }
+
+    public Label getLblCategory() {
+        return lblCategory;
+    }
+
+    public Label getLblPrice() {
+        return lblPrice;
+    }
 }

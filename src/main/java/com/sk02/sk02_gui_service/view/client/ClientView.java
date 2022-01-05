@@ -166,4 +166,31 @@ public class ClientView extends Stage {
         setScene(scene);
     }
 
+    public TextField getTfHotel() {
+        return tfHotel;
+    }
+
+    public TextField getTfCity() {
+        return tfCity;
+    }
+
+    public DatePicker getDpStart() {
+        return dpStart;
+    }
+
+    public DatePicker getDpEnd() {
+        return dpEnd;
+    }
+
+    public ComboBox getCbPrice() {
+        return cbPrice;
+    }
+
+    public TextField getTfHotelReview() {
+        return tfHotelReview;
+    }
+
+    public TextField getTfCityReview() {
+        return tfCityReview;
+    }
 }

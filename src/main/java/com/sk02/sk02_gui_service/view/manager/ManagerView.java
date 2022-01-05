@@ -111,4 +111,16 @@ public class ManagerView extends Stage {
         scene.getStylesheets().add("styles/style.css");
         setScene(scene);
     }
+
+    public Label getLblName() {
+        return lblName;
+    }
+
+    public Label getLblDescription() {
+        return lblDescription;
+    }
+
+    public Label getLblCity() {
+        return lblCity;
+    }
 }
