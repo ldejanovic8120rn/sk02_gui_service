@@ -1,0 +1,82 @@
+    /*
+    blue: #00B4EA       dark blue: #168dac
+    orange: #FF9305     dark orange: #cb770b
+    grey: #323232;
+
+    -fx-effect: dropshadow( three-pass-box , rgba(255,255,255,0.2) , 1, 0.0 , 0 , 1);
+    -fx-effect: dropshadow( one-pass-box , white , 0, 0.0 , 0 , 1 );
+    */
+.root {
+    -fx-font-size: 12pt;
+    -fx-text-fill: #323232;
+}
+
+.button-blue{
+    -fx-background-color: #00B4EA;
+    -fx-background-radius: 30;
+    -fx-background-insets: 0;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.button-blue:hover{
+    -fx-background-color: #168dac;
+    -fx-background-radius: 30;
+    -fx-background-insets: 0;
+    -fx-text-fill: white;
+}
+
+.button-orange{
+    -fx-background-color: #FF9305;
+    -fx-background-radius: 30;
+    -fx-background-insets: 0;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.button-orange:hover{
+    -fx-background-color: #cb770b;
+    -fx-background-radius: 30;
+    -fx-background-insets: 0;
+    -fx-text-fill: white;
+}
+
+.registration-text{
+    -fx-underline: true;
+}
+
+.registration-text:hover{
+    -fx-cursor: hand;
+}
+
+.title{
+    -fx-font-size: 20pt;
+}
+
+.combo-box{
+    -fx-background-color: #efefef;
+    -fx-border-color: #cbcbcb;
+
+}
+
+.text-field {
+    -fx-background-color: #fcfcfc;
+    -fx-border-color: #d2d2d2;
+}
+
+.text-area {
+    -fx-background-color: #fcfcfc;
+    -fx-border-color: #d2d2d2;
+}
+
+.notification-button{
+    -fx-background-color: #FF9305;
+    -fx-background-radius: 30;
+    -fx-background-insets: 0;
+}
+
+.notification-button:hover {
+    -fx-background-color: #cb770b;
+    -fx-background-radius: 30;
+    -fx-background-insets: 0;
+}
