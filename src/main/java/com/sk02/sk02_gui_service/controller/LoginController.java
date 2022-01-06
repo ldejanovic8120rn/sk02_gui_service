@@ -39,6 +39,7 @@ public class LoginController implements EventHandler<ActionEvent> {
             else if (UserData.getInstance().getRole().equals("MANAGER")){
                 LoginView.getInstance().close();
                 ManagerView.getInstance().show();
+                //todo refresh
             }
 
         } catch (IOException e) {
