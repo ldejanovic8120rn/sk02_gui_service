@@ -5,11 +5,15 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class MyReviewsDialog extends Stage {
+
+    private VBox vbReviews;
 
     public MyReviewsDialog(){
         init();
@@ -27,7 +31,17 @@ public class MyReviewsDialog extends Stage {
         hbTitle.getChildren().add(lblTitle);
 
         //review list
-        //TODO
+        vbReviews = new VBox();
+        vbReviews.setAlignment(Pos.CENTER);
+        vbReviews.setPadding(new Insets(20));
+        vbReviews.setSpacing(20);
+
+        ScrollPane spReviews = new ScrollPane();
+        spReviews.setContent(vbReviews);
+        spReviews.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        spReviews.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+
+        vbReviews.minWidthProperty().bind(spReviews.widthProperty().multiply(0.95));
 
         //button
         Button btnBack = new Button("Back");
@@ -42,7 +56,7 @@ public class MyReviewsDialog extends Stage {
         //scene settings
         BorderPane bp = new BorderPane();
         bp.setTop(hbTitle);
-        //bp.setCenter(vbMain);
+        bp.setCenter(spReviews);
         bp.setBottom(hbButtons);
 
         Scene scene = new Scene(bp, 500, 600);
@@ -50,5 +64,9 @@ public class MyReviewsDialog extends Stage {
         setMinHeight(410);
         scene.getStylesheets().add("styles/style.css");
         setScene(scene);
+    }
+
+    public VBox getVbReviews() {
+        return vbReviews;
     }
 }

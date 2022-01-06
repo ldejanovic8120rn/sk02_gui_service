@@ -32,9 +32,9 @@ public class Main extends Application {
 //        new ReservationsClientDialog().show();
 //        new ReservationsManagerDialog().show();
 //        new NotificationsDialog().show();
-        ClientView.getInstance().show();
+//        ClientView.getInstance().show();
 //        ManagerView.getInstance().show();
-//        new RoomTypesDialog().show();
+        new RoomTypesDialog().show();
     }
 
     public static void main(String[] args) {

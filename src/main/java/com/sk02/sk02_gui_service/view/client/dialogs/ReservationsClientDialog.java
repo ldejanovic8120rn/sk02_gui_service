@@ -5,11 +5,15 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class ReservationsClientDialog extends Stage {
+
+    private VBox vbReservations;
 
     public ReservationsClientDialog(){
         init();
@@ -26,8 +30,18 @@ public class ReservationsClientDialog extends Stage {
         hbTitle.setPadding(new Insets(15));
         hbTitle.getChildren().add(lblTitle);
 
-        //reseervations list
-        //TODO
+        //reservations list
+        vbReservations = new VBox();
+        vbReservations.setAlignment(Pos.CENTER);
+        vbReservations.setPadding(new Insets(20));
+        vbReservations.setSpacing(20);
+
+        ScrollPane spReservations = new ScrollPane();
+        spReservations.setContent(vbReservations);
+        spReservations.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        spReservations.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+
+        vbReservations.minWidthProperty().bind(spReservations.widthProperty().multiply(0.95));
 
         //button
         Button btnBack = new Button("Back");
@@ -42,7 +56,7 @@ public class ReservationsClientDialog extends Stage {
         //scene settings
         BorderPane bp = new BorderPane();
         bp.setTop(hbTitle);
-        //bp.setCenter(vbMain);
+        bp.setCenter(spReservations);
         bp.setBottom(hbButtons);
 
         Scene scene = new Scene(bp, 500, 450);
@@ -50,5 +64,9 @@ public class ReservationsClientDialog extends Stage {
         setMinHeight(410);
         scene.getStylesheets().add("styles/style.css");
         setScene(scene);
+    }
+
+    public VBox getVbReservations() {
+        return vbReservations;
     }
 }

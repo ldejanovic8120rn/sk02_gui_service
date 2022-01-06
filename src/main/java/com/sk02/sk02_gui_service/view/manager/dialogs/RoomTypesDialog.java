@@ -3,10 +3,8 @@ package com.sk02.sk02_gui_service.view.manager.dialogs;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.SplitPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -19,6 +17,8 @@ public class RoomTypesDialog extends Stage {
     private TextField tfLowerB;
     private TextField tfUpperB;
 
+    private VBox vbRoomTypes;
+
     public RoomTypesDialog(){
         init();
     }
@@ -30,11 +30,28 @@ public class RoomTypesDialog extends Stage {
         Label lblTitleLeft = new Label("Room Types:");
         lblTitleLeft.getStyleClass().add("title");
 
-        VBox vbLeft = new VBox();
-        vbLeft.setAlignment(Pos.TOP_CENTER);
-        vbLeft.setPadding(new Insets(15));
-        vbLeft.getChildren().addAll(lblTitleLeft);
-        //TODO LIST ROOM TYPES
+        HBox hbTitle = new HBox();
+        hbTitle.setAlignment(Pos.CENTER);
+        hbTitle.setPadding(new Insets(15));
+        hbTitle.getChildren().add(lblTitleLeft);
+
+        //room types scroll
+        //todo igraj se sa insets i multiply
+        vbRoomTypes = new VBox();
+        vbRoomTypes.setAlignment(Pos.CENTER);
+        vbRoomTypes.setPadding(new Insets(40));
+        vbRoomTypes.setSpacing(20);
+
+        ScrollPane spRoomTypes = new ScrollPane();
+        spRoomTypes.setContent(vbRoomTypes);
+        spRoomTypes.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        spRoomTypes.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+
+        vbRoomTypes.minWidthProperty().bind(spRoomTypes.widthProperty().multiply(0.80));
+
+        BorderPane bpLeft = new BorderPane();
+        bpLeft.setTop(hbTitle);
+        bpLeft.setCenter(spRoomTypes);
 
         //right
         Button btnBack = new Button("Back");
@@ -95,9 +112,9 @@ public class RoomTypesDialog extends Stage {
 
         //scene settings
         SplitPane splitPane = new SplitPane();
-        splitPane.getItems().addAll(vbLeft, vbRight);
+        splitPane.getItems().addAll(bpLeft, vbRight);
         splitPane.setDividerPositions(0.6);
-        vbLeft.maxWidthProperty().bind(splitPane.widthProperty().multiply(0.6));
+        bpLeft.maxWidthProperty().bind(splitPane.widthProperty().multiply(0.6));
         vbRight.maxWidthProperty().bind(splitPane.widthProperty().multiply(0.4));
 
         Scene scene = new Scene(splitPane, 1000, 600);
@@ -121,5 +138,9 @@ public class RoomTypesDialog extends Stage {
 
     public TextField getTfUpperB() {
         return tfUpperB;
+    }
+
+    public VBox getVbRoomTypes() {
+        return vbRoomTypes;
     }
 }

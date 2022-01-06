@@ -25,6 +25,9 @@ public class ClientView extends Stage {
     private TextField tfHotelReview;
     private TextField tfCityReview;
 
+    private VBox vbReviews;
+    private VBox vbHotels;
+
     private ClientView(){
         init();
     }
@@ -113,7 +116,8 @@ public class ClientView extends Stage {
         vbLeft.getChildren().addAll(hbButtonsLeft, btnFilterHotels);
 
         //hotels scroll
-        VBox vbHotels = new VBox();
+        //todo igraj se sa insets i multiply
+        vbHotels = new VBox();
         vbHotels.setAlignment(Pos.CENTER);
         vbHotels.setPadding(new Insets(40));
         vbHotels.setSpacing(20);
@@ -148,14 +152,14 @@ public class ClientView extends Stage {
         btnFilterReviews.setMinWidth(100);
         btnFilterReviews.getStyleClass().add("button-blue");
 
-        //reviews scroll
         VBox vbRight = new VBox();
         vbRight.setAlignment(Pos.CENTER);
         vbRight.setPadding(new Insets(10));
         vbRight.setSpacing(5);
         vbRight.getChildren().addAll(hbFilterRight, btnFilterReviews);
 
-        VBox vbReviews = new VBox();
+        //reviews scroll
+        vbReviews = new VBox();
         vbReviews.setAlignment(Pos.CENTER);
         vbReviews.setPadding(new Insets(20));
         vbReviews.setSpacing(20);
@@ -233,5 +237,13 @@ public class ClientView extends Stage {
 
     public TextField getTfCityReview() {
         return tfCityReview;
+    }
+
+    public VBox getVbReviews() {
+        return vbReviews;
+    }
+
+    public VBox getVbHotels() {
+        return vbHotels;
     }
 }

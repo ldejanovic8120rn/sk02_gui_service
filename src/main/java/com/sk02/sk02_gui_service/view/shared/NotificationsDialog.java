@@ -3,10 +3,7 @@ package com.sk02.sk02_gui_service.view.shared;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -17,6 +14,8 @@ public class NotificationsDialog extends Stage {
     private TextField tfType;
     private DatePicker dpStart;
     private DatePicker dpEnd;
+
+    private VBox vbNotifications;
 
     public NotificationsDialog(){
         init();
@@ -64,7 +63,17 @@ public class NotificationsDialog extends Stage {
         vbTop.getChildren().addAll(lblTitle, hbFilter, hbFilterButton);
 
         //list notifications
-        //TODO
+        vbNotifications = new VBox();
+        vbNotifications.setAlignment(Pos.CENTER);
+        vbNotifications.setPadding(new Insets(20));
+        vbNotifications.setSpacing(20);
+
+        ScrollPane spNotifications = new ScrollPane();
+        spNotifications.setContent(vbNotifications);
+        spNotifications.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        spNotifications.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+
+        vbNotifications.minWidthProperty().bind(spNotifications.widthProperty().multiply(0.95));
 
 
         //button
@@ -80,7 +89,7 @@ public class NotificationsDialog extends Stage {
         //scene settings
         BorderPane bp = new BorderPane();
         bp.setTop(vbTop);
-        //bp.setCenter(vbMain);
+        bp.setCenter(spNotifications);
         bp.setBottom(hbButtons);
 
         Scene scene = new Scene(bp, 600, 620);
@@ -88,5 +97,21 @@ public class NotificationsDialog extends Stage {
         setMinHeight(410);
         scene.getStylesheets().add("styles/style.css");
         setScene(scene);
+    }
+
+    public TextField getTfType() {
+        return tfType;
+    }
+
+    public DatePicker getDpStart() {
+        return dpStart;
+    }
+
+    public DatePicker getDpEnd() {
+        return dpEnd;
+    }
+
+    public VBox getVbNotifications() {
+        return vbNotifications;
     }
 }
