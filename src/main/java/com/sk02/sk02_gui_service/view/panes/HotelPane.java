@@ -1,6 +1,6 @@
 package com.sk02.sk02_gui_service.view.panes;
 
-import com.sk02.sk02_gui_service.restclient.dto.HotelFilterViewDto;
+import com.sk02.sk02_gui_service.restclient.dto.hotel.HotelFilterViewDto;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;

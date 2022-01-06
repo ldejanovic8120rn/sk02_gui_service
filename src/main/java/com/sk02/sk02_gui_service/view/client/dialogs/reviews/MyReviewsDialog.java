@@ -1,7 +1,5 @@
 package com.sk02.sk02_gui_service.view.client.dialogs.reviews;
 
-import com.sk02.sk02_gui_service.restclient.dto.ReviewDto;
-import com.sk02.sk02_gui_service.view.panes.MyReviewPane;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;

@@ -1,4 +1,4 @@
-package com.sk02.sk02_gui_service.restclient.dto;
+package com.sk02.sk02_gui_service.restclient.dto.review;
 
 public class ReviewDto {
 

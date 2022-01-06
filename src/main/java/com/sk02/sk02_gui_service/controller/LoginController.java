@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sk02.sk02_gui_service.model.User;
 import com.sk02.sk02_gui_service.model.UserData;
-import com.sk02.sk02_gui_service.restclient.UserServiceRestClient;
+import com.sk02.sk02_gui_service.restclient.clients.user.UserRestClient;
 import com.sk02.sk02_gui_service.view.LoginView;
 import com.sk02.sk02_gui_service.view.client.ClientView;
 import com.sk02.sk02_gui_service.view.manager.ManagerView;
@@ -15,18 +15,18 @@ import java.util.Base64;
 
 public class LoginController implements EventHandler<ActionEvent> {
 
-    private UserServiceRestClient userServiceRestClient;
+    private UserRestClient userRestClient;
     private ObjectMapper objectMapper;
 
     public LoginController(){
-        userServiceRestClient = new UserServiceRestClient();
+        userRestClient = new UserRestClient();
         objectMapper = new ObjectMapper();
     }
 
     @Override
     public void handle(ActionEvent actionEvent) {
         try {
-            String token = userServiceRestClient.login(LoginView.getInstance().getTfEmail().getText(), LoginView.getInstance().getPasswordField().getText());
+            String token = userRestClient.login(LoginView.getInstance().getTfEmail().getText(), LoginView.getInstance().getPasswordField().getText());
             UserData.getInstance().setToken(token);
 
             decode(token);

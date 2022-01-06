@@ -1,6 +1,6 @@
 package com.sk02.sk02_gui_service.view.panes;
 
-import com.sk02.sk02_gui_service.restclient.dto.ReviewDto;
+import com.sk02.sk02_gui_service.restclient.dto.review.ReviewDto;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;

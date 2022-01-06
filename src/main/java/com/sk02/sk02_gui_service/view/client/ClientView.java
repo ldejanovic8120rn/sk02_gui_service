@@ -1,9 +1,7 @@
 package com.sk02.sk02_gui_service.view.client;
 
-import com.sk02.sk02_gui_service.restclient.dto.HotelFilterViewDto;
-import com.sk02.sk02_gui_service.restclient.dto.ReviewDto;
-import com.sk02.sk02_gui_service.view.panes.HotelPane;
-import com.sk02.sk02_gui_service.view.panes.ReviewPane;
+import com.sk02.sk02_gui_service.controller.HotelFilterController;
+import com.sk02.sk02_gui_service.controller.ReviewFilterController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -14,6 +12,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
+import java.time.ZoneId;
+import java.util.Calendar;
+import java.util.Date;
 
 
 public class ClientView extends Stage {
@@ -29,6 +31,8 @@ public class ClientView extends Stage {
     private TextField tfHotelReview;
     private TextField tfCityReview;
 
+    private Button btnFilterHotels;
+    private Button btnFilterReviews;
     private VBox vbReviews;
     private VBox vbHotels;
 
@@ -94,14 +98,20 @@ public class ClientView extends Stage {
 
         Label lblDate = new Label("Date:");
         dpStart = new DatePicker();
-        dpStart.setMaxWidth(130);
+        dpStart.setMaxWidth(135);
+        dpStart.setValue(new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+
         Label lblDash = new Label("-");
         dpEnd = new DatePicker();
-        dpEnd.setMaxWidth(130);
+        dpEnd.setMaxWidth(135);
+        Calendar c = Calendar.getInstance();
+        c.add(Calendar.DAY_OF_YEAR, 7);
+        dpEnd.setValue(c.getTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
 
         Label lblSort = new Label("Sort:");
         cbPrice = new ComboBox();
-        cbPrice.setPromptText("Sort By");
+        cbPrice.setPromptText("Price:");
+        cbPrice.getItems().addAll("Low To High", "High To Low");
 
         HBox hbButtonsLeft = new HBox();
         hbButtonsLeft.setAlignment(Pos.CENTER);
@@ -109,9 +119,11 @@ public class ClientView extends Stage {
         hbButtonsLeft.setSpacing(10);
         hbButtonsLeft.getChildren().addAll(lblHotel, tfHotel, lblCity, tfCity, lblDate, dpStart, lblDash, dpEnd, lblSort, cbPrice);
 
-        Button btnFilterHotels = new Button("Filter Hotels");
+        btnFilterHotels = new Button("Filter Hotels");
         btnFilterHotels.setMinWidth(100);
         btnFilterHotels.getStyleClass().add("button-blue");
+
+        btnFilterHotels.setOnAction(new HotelFilterController());
 
         VBox vbLeft = new VBox();
         vbLeft.setAlignment(Pos.CENTER);
@@ -136,17 +148,6 @@ public class ClientView extends Stage {
         bpLeft.setTop(vbLeft);
         bpLeft.setCenter(spHotels);
 
-        /*HotelFilterViewDto dto = new HotelFilterViewDto();
-        dto.setHotelCity("Beograd");
-        dto.setHotelDescription("Najbolji hotel u gradu");
-        dto.setHotelName("Neki Hotel");
-        dto.setRoomTypeCategory("A +");
-        dto.setRoomTypePrice("40");
-
-        for (int i = 0; i < 20; i++){
-            vbHotels.getChildren().add(new HotelPane(dto));
-        }*/
-
         //center pane, right
         Label lblHotelReview = new Label("Hotel:");
         tfHotelReview = new TextField();
@@ -162,9 +163,11 @@ public class ClientView extends Stage {
         hbFilterRight.setSpacing(10);
         hbFilterRight.getChildren().addAll(lblHotelReview, tfHotelReview, lblCityReview, tfCityReview);
 
-        Button btnFilterReviews = new Button("Filter Reviews");
+        btnFilterReviews = new Button("Filter Reviews");
         btnFilterReviews.setMinWidth(100);
         btnFilterReviews.getStyleClass().add("button-blue");
+
+        btnFilterReviews.setOnAction(new ReviewFilterController());
 
         VBox vbRight = new VBox();
         vbRight.setAlignment(Pos.CENTER);
@@ -184,13 +187,6 @@ public class ClientView extends Stage {
         spReviews.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
 
         vbReviews.minWidthProperty().bind(spReviews.widthProperty().multiply(0.95));
-
-        /*ReviewDto reviewDto = new ReviewDto();
-        reviewDto.setComment("Neki komentar ashdbas asdasd etrfs dfsd qweas as afasdasd asdasd QWQWE ASASDAS");
-        reviewDto.setHotelName("Hotel hotel");
-        reviewDto.setRate(4);
-        reviewDto.setUsername("laki");
-        vbReviews.getChildren().add(new ReviewPane(reviewDto));*/
 
         //bottom right
         HBox hbButtonsBottomRight = new HBox();
@@ -230,6 +226,13 @@ public class ClientView extends Stage {
         setMinHeight(730);
         scene.getStylesheets().add("styles/style.css");
         setScene(scene);
+
+        refresh();
+    }
+
+    private void refresh(){
+        btnFilterHotels.fire();
+        btnFilterReviews.fire();
     }
 
     public TextField getTfHotel() {

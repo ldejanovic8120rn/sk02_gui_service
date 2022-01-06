@@ -1,4 +1,4 @@
-package com.sk02.sk02_gui_service.restclient.dto;
+package com.sk02.sk02_gui_service.restclient.dto.token;
 
 
 public class TokenRequestDto {
