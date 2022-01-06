@@ -112,10 +112,22 @@ public class ClientView extends Stage {
         vbLeft.setSpacing(5);
         vbLeft.getChildren().addAll(hbButtonsLeft, btnFilterHotels);
 
+        //hotels scroll
+        VBox vbHotels = new VBox();
+        vbHotels.setAlignment(Pos.CENTER);
+        vbHotels.setPadding(new Insets(40));
+        vbHotels.setSpacing(20);
+
+        ScrollPane spHotels = new ScrollPane();
+        spHotels.setContent(vbHotels);
+        spHotels.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        spHotels.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+
+        vbHotels.minWidthProperty().bind(spHotels.widthProperty().multiply(0.80));
+
         BorderPane bpLeft = new BorderPane();
-        //bpLeft.setMinWidth(1000);
         bpLeft.setTop(vbLeft);
-        //TODO LIST HOTELS - BPLEFT.CENTER
+        bpLeft.setCenter(spHotels);
 
         //center pane, right
         Label lblHotelReview = new Label("Hotel:");
@@ -136,11 +148,24 @@ public class ClientView extends Stage {
         btnFilterReviews.setMinWidth(100);
         btnFilterReviews.getStyleClass().add("button-blue");
 
+        //reviews scroll
         VBox vbRight = new VBox();
         vbRight.setAlignment(Pos.CENTER);
         vbRight.setPadding(new Insets(10));
         vbRight.setSpacing(5);
         vbRight.getChildren().addAll(hbFilterRight, btnFilterReviews);
+
+        VBox vbReviews = new VBox();
+        vbReviews.setAlignment(Pos.CENTER);
+        vbReviews.setPadding(new Insets(20));
+        vbReviews.setSpacing(20);
+
+        ScrollPane spReviews = new ScrollPane();
+        spReviews.setContent(vbReviews);
+        spReviews.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        spReviews.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+
+        vbReviews.minWidthProperty().bind(spReviews.widthProperty().multiply(0.95));
 
         //bottom right
         HBox hbButtonsBottomRight = new HBox();
@@ -160,7 +185,7 @@ public class ClientView extends Stage {
 
         BorderPane bpRight = new BorderPane();
         bpRight.setTop(vbRight);
-        //TODO LIST REVIEWS - BPRIGHT.CENTER
+        bpRight.setCenter(spReviews);
         bpRight.setBottom(hbButtonsBottomRight);
 
         //center
