@@ -51,6 +51,10 @@
     -fx-font-size: 20pt;
 }
 
+.title-pane {
+    -fx-font-size: 16pt;
+}
+
 .combo-box{
     -fx-background-color: #efefef;
     -fx-border-color: #cbcbcb;

@@ -1,5 +1,7 @@
 package com.sk02.sk02_gui_service.view.client.dialogs.reviews;
 
+import com.sk02.sk02_gui_service.restclient.dto.ReviewDto;
+import com.sk02.sk02_gui_service.view.panes.MyReviewPane;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -42,6 +44,14 @@ public class MyReviewsDialog extends Stage {
         spReviews.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
 
         vbReviews.minWidthProperty().bind(spReviews.widthProperty().multiply(0.95));
+
+        /*ReviewDto reviewDto = new ReviewDto();
+        reviewDto.setComment("Neki komentar ashdbas asdasd etrfs dfsd qweas as afasdasd asdasd QWQWE ASASDAS");
+        reviewDto.setHotelName("Hotel hotel");
+        reviewDto.setRate(4);
+        reviewDto.setUsername("laki");
+        for (int i = 0; i < 10; i++)
+            vbReviews.getChildren().add(new MyReviewPane(reviewDto));*/
 
         //button
         Button btnBack = new Button("Back");

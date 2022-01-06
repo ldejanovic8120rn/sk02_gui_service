@@ -1,5 +1,9 @@
 package com.sk02.sk02_gui_service.view.client;
 
+import com.sk02.sk02_gui_service.restclient.dto.HotelFilterViewDto;
+import com.sk02.sk02_gui_service.restclient.dto.ReviewDto;
+import com.sk02.sk02_gui_service.view.panes.HotelPane;
+import com.sk02.sk02_gui_service.view.panes.ReviewPane;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -116,10 +120,9 @@ public class ClientView extends Stage {
         vbLeft.getChildren().addAll(hbButtonsLeft, btnFilterHotels);
 
         //hotels scroll
-        //todo igraj se sa insets i multiply
         vbHotels = new VBox();
         vbHotels.setAlignment(Pos.CENTER);
-        vbHotels.setPadding(new Insets(40));
+        vbHotels.setPadding(new Insets(60));
         vbHotels.setSpacing(20);
 
         ScrollPane spHotels = new ScrollPane();
@@ -127,11 +130,22 @@ public class ClientView extends Stage {
         spHotels.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         spHotels.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
 
-        vbHotels.minWidthProperty().bind(spHotels.widthProperty().multiply(0.80));
+        vbHotels.minWidthProperty().bind(spHotels.widthProperty().multiply(0.95));
 
         BorderPane bpLeft = new BorderPane();
         bpLeft.setTop(vbLeft);
         bpLeft.setCenter(spHotels);
+
+        /*HotelFilterViewDto dto = new HotelFilterViewDto();
+        dto.setHotelCity("Beograd");
+        dto.setHotelDescription("Najbolji hotel u gradu");
+        dto.setHotelName("Neki Hotel");
+        dto.setRoomTypeCategory("A +");
+        dto.setRoomTypePrice("40");
+
+        for (int i = 0; i < 20; i++){
+            vbHotels.getChildren().add(new HotelPane(dto));
+        }*/
 
         //center pane, right
         Label lblHotelReview = new Label("Hotel:");
@@ -170,6 +184,13 @@ public class ClientView extends Stage {
         spReviews.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
 
         vbReviews.minWidthProperty().bind(spReviews.widthProperty().multiply(0.95));
+
+        /*ReviewDto reviewDto = new ReviewDto();
+        reviewDto.setComment("Neki komentar ashdbas asdasd etrfs dfsd qweas as afasdasd asdasd QWQWE ASASDAS");
+        reviewDto.setHotelName("Hotel hotel");
+        reviewDto.setRate(4);
+        reviewDto.setUsername("laki");
+        vbReviews.getChildren().add(new ReviewPane(reviewDto));*/
 
         //bottom right
         HBox hbButtonsBottomRight = new HBox();

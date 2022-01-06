@@ -25,7 +25,7 @@ public class Main extends Application {
 //        new EditRoomTypeDialog().show();
 //        new AddReviewDialog().show();
 //        new EditReviewDialog().show();
-//        new MyReviewsDialog().show();
+        new MyReviewsDialog().show();
 //        new EditProfileClientDialog().show();
 //        new EditProfileManagerDialog().show();
 //        new ReservationDialog().show();
@@ -34,7 +34,7 @@ public class Main extends Application {
 //        new NotificationsDialog().show();
 //        ClientView.getInstance().show();
 //        ManagerView.getInstance().show();
-        new RoomTypesDialog().show();
+//        new RoomTypesDialog().show();
     }
 
     public static void main(String[] args) {
