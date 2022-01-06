@@ -9,7 +9,8 @@ import java.io.IOException;
 
 public class UserServiceRestClient {
 
-    public static final String URL = "http://localhost:8084/user-service/api/login";
+    public static final String URL = "http://localhost:8084/user-service/api";
+    //public static final String URL = "http://localhost:8081/api";
     public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
 
     OkHttpClient client = new OkHttpClient();
@@ -23,7 +24,7 @@ public class UserServiceRestClient {
         RequestBody body = RequestBody.create(objectMapper.writeValueAsString(tokenRequestDto), JSON);
 
         Request request = new Request.Builder()
-                .url(URL + "/user/login")
+                .url(URL + "/users/login")
                 .post(body)
                 .build();
 

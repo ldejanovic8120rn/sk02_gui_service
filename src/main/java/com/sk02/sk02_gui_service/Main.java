@@ -19,13 +19,13 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-//        LoginView.getInstance().show();
+        LoginView.getInstance().show();
 //        RegisterView.getInstance().show();
 //        new EditHotelDialog().show();
 //        new EditRoomTypeDialog().show();
 //        new AddReviewDialog().show();
 //        new EditReviewDialog().show();
-        new MyReviewsDialog().show();
+//        new MyReviewsDialog().show();
 //        new EditProfileClientDialog().show();
 //        new EditProfileManagerDialog().show();
 //        new ReservationDialog().show();
