@@ -126,11 +126,11 @@ public class ClientView extends Stage {
         tfCityReview = new TextField();
         tfCityReview.setMaxWidth(130);
 
-        HBox hbButtonsRight = new HBox();
-        hbButtonsRight.setAlignment(Pos.CENTER);
-        hbButtonsRight.setPadding(new Insets(10));
-        hbButtonsRight.setSpacing(10);
-        hbButtonsRight.getChildren().addAll(lblHotelReview, tfHotelReview, lblCityReview, tfCityReview);
+        HBox hbFilterRight = new HBox();
+        hbFilterRight.setAlignment(Pos.CENTER);
+        hbFilterRight.setPadding(new Insets(10));
+        hbFilterRight.setSpacing(10);
+        hbFilterRight.getChildren().addAll(lblHotelReview, tfHotelReview, lblCityReview, tfCityReview);
 
         Button btnFilterReviews = new Button("Filter Reviews");
         btnFilterReviews.setMinWidth(100);
@@ -140,12 +140,28 @@ public class ClientView extends Stage {
         vbRight.setAlignment(Pos.CENTER);
         vbRight.setPadding(new Insets(10));
         vbRight.setSpacing(5);
-        vbRight.getChildren().addAll(hbButtonsRight, btnFilterReviews);
+        vbRight.getChildren().addAll(hbFilterRight, btnFilterReviews);
+
+        //bottom right
+        HBox hbButtonsBottomRight = new HBox();
+        hbButtonsBottomRight.setAlignment(Pos.CENTER);
+        hbButtonsBottomRight.setPadding(new Insets(10));
+        hbButtonsBottomRight.setSpacing(10);
+
+        Button btnAddReview = new Button("Add Review");
+        btnAddReview.setMinWidth(100);
+        btnAddReview.getStyleClass().add("button-blue");
+
+        Button btnMyReviews = new Button("My Reviews");
+        btnMyReviews.setMinWidth(100);
+        btnMyReviews.getStyleClass().add("button-orange");
+
+        hbButtonsBottomRight.getChildren().addAll(btnAddReview, btnMyReviews);
 
         BorderPane bpRight = new BorderPane();
-        //bpRight.setMinWidth(400);
         bpRight.setTop(vbRight);
         //TODO LIST REVIEWS - BPRIGHT.CENTER
+        bpRight.setBottom(hbButtonsBottomRight);
 
         //center
         SplitPane splitPane = new SplitPane();

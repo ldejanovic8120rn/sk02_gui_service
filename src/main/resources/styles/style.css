@@ -2,10 +2,8 @@
     blue: #00B4EA       dark blue: #168dac
     orange: #FF9305     dark orange: #cb770b
     grey: #323232;
-
-    -fx-effect: dropshadow( three-pass-box , rgba(255,255,255,0.2) , 1, 0.0 , 0 , 1);
-    -fx-effect: dropshadow( one-pass-box , white , 0, 0.0 , 0 , 1 );
     */
+
 .root {
     -fx-font-size: 12pt;
     -fx-text-fill: #323232;
@@ -79,4 +77,16 @@
     -fx-background-color: #cb770b;
     -fx-background-radius: 30;
     -fx-background-insets: 0;
+}
+
+.custom-pane, .custom-pane-clickable {
+    -fx-background-color: #f8f8f8;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-width:5;
+
+}
+
+.custom-pane-clickable:hover {
+    -fx-effect: dropshadow(gaussian , dimgrey , 10, 0, 0, 0);
 }
