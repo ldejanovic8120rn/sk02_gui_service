@@ -19,7 +19,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-//        LoginView.getInstance().show();
+        LoginView.getInstance().show();
 //        RegisterView.getInstance().show();
 //        new EditHotelDialog().show();
 //        new EditRoomTypeDialog().show();
@@ -32,7 +32,7 @@ public class Main extends Application {
 //        new ReservationsClientDialog().show();
 //        new ReservationsManagerDialog().show();
 //        new NotificationsDialog().show();
-        ClientView.getInstance().show();
+//        ClientView.getInstance().show();
 //        ManagerView.getInstance().show();
 //        new RoomTypesDialog().show();
     }

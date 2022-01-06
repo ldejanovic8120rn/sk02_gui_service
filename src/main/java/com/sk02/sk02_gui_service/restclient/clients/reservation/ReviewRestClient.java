@@ -34,7 +34,7 @@ public class ReviewRestClient {
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
         Request request = new Request.Builder()
-                .url(URL + "/filter")
+                .url(URL + "/reviews")
                 .header("Authorization", "Bearer " + UserData.getInstance().getToken())
                 .post(body)
                 .get()
