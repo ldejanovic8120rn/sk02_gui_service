@@ -1,5 +1,6 @@
 package com.sk02.sk02_gui_service.view;
 
+import com.sk02.sk02_gui_service.controller.LoginController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -72,6 +73,8 @@ public class LoginView extends Stage {
         btnLogin.setMinWidth(120);
         btnLogin.getStyleClass().add("button-blue");
 
+        btnLogin.setOnAction(new LoginController());
+
         VBox vbButtonLogin = new VBox();
         vbButtonLogin.setAlignment(Pos.CENTER);
         vbButtonLogin.setPadding(new Insets(15));
@@ -86,7 +89,6 @@ public class LoginView extends Stage {
         setMinWidth(510);
         setMinHeight(280);
         scene.getStylesheets().add("styles/style.css");
-        //scene.getStylesheets().add(LoginView.class.getResource("styles/style.css").toExternalForm());
         setScene(scene);
     }
 
