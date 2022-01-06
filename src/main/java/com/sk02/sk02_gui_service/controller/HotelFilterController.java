@@ -25,6 +25,8 @@ public class HotelFilterController implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent actionEvent) {
+        ClientView.getInstance().getVbHotels().getChildren().removeAll();
+
         String name = ClientView.getInstance().getTfHotel().getText();
         String city = ClientView.getInstance().getTfCity().getText();
 

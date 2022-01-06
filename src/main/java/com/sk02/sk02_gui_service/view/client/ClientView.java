@@ -226,11 +226,9 @@ public class ClientView extends Stage {
         setMinHeight(730);
         scene.getStylesheets().add("styles/style.css");
         setScene(scene);
-
-        refresh();
     }
 
-    private void refresh(){
+    public void refresh(){
         btnFilterHotels.fire();
         btnFilterReviews.fire();
     }

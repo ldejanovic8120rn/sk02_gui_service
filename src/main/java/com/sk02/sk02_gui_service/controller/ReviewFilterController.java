@@ -20,6 +20,8 @@ public class ReviewFilterController implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent actionEvent) {
+        ClientView.getInstance().getVbReviews().getChildren().removeAll();
+
         String hotelName = ClientView.getInstance().getTfHotelReview().getText();
         String city = ClientView.getInstance().getTfCityReview().getText();
 

@@ -34,6 +34,7 @@ public class LoginController implements EventHandler<ActionEvent> {
             if (UserData.getInstance().getRole().equals("CLIENT")){
                 LoginView.getInstance().close();
                 ClientView.getInstance().show();
+                ClientView.getInstance().refresh();
             }
             else if (UserData.getInstance().getRole().equals("MANAGER")){
                 LoginView.getInstance().close();
