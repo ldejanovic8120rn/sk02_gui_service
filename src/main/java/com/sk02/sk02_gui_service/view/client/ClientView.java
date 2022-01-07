@@ -2,6 +2,7 @@ package com.sk02.sk02_gui_service.view.client;
 
 import com.sk02.sk02_gui_service.controller.HotelFilterController;
 import com.sk02.sk02_gui_service.controller.ReviewFilterController;
+import com.sk02.sk02_gui_service.view.client.dialogs.EditProfileClientDialog;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -72,15 +73,19 @@ public class ClientView extends Stage {
         btnReservations.setMinWidth(80);
         btnReservations.getStyleClass().add("button-blue");
 
-        Button btnNProfile = new Button("Edit Profile");
-        btnNProfile.setMinWidth(80);
-        btnNProfile.getStyleClass().add("button-orange");
+        Button btnProfile = new Button("Edit Profile");
+        btnProfile.setMinWidth(80);
+        btnProfile.getStyleClass().add("button-orange");
+
+        btnProfile.setOnAction(actionEvent -> {
+            new EditProfileClientDialog().show();
+        });
 
         HBox hbTopRight = new HBox();
         hbTopRight.setAlignment(Pos.CENTER_RIGHT);
         hbTopRight.setPadding(new Insets(15));
         hbTopRight.setSpacing(10);
-        hbTopRight.getChildren().addAll(btnNotifications, btnReservations, btnNProfile);
+        hbTopRight.getChildren().addAll(btnNotifications, btnReservations, btnProfile);
 
         //top pane
         BorderPane bpTop = new BorderPane();

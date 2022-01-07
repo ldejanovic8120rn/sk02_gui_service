@@ -1,9 +1,11 @@
 package com.sk02.sk02_gui_service.restclient.clients.user;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sk02.sk02_gui_service.model.UserData;
 import com.sk02.sk02_gui_service.restclient.dto.token.TokenRequestDto;
 import com.sk02.sk02_gui_service.restclient.dto.token.TokenResponseDto;
 import com.sk02.sk02_gui_service.restclient.dto.user.UserClientCreateDto;
+import com.sk02.sk02_gui_service.restclient.dto.user.UserClientUpdateDto;
 import com.sk02.sk02_gui_service.restclient.dto.user.UserManagerCreateDto;
 import okhttp3.*;
 
@@ -101,4 +103,52 @@ public class UserRestClient {
 
         throw new RuntimeException("Registration Failed");
     }
+
+    public void editClient(String firstName, String lastName, String username, String password, String email, String phone, Date birthday, String passportNo) throws IOException{
+        UserClientUpdateDto userClientUpdateDto = new UserClientUpdateDto();
+
+        if(firstName != null && !firstName.isEmpty()){
+            userClientUpdateDto.setFirstName(firstName);
+        }
+        if(lastName != null && !lastName.isEmpty()){
+            userClientUpdateDto.setLastName(lastName);
+        }
+        if(username != null && !username.isEmpty()){
+            userClientUpdateDto.setUsername(username);
+        }
+        if(password != null && !password.isEmpty()){
+            userClientUpdateDto.setPassword(password);
+        }
+        if(email != null && !email.isEmpty()){
+            userClientUpdateDto.setEmail(email);
+        }
+        if(phone != null && !phone.isEmpty()){
+            userClientUpdateDto.setPhone(phone);
+        }
+        if(birthday != null){
+            userClientUpdateDto.setBirthday(birthday);
+        }
+        if(passportNo != null && !passportNo.isEmpty()){
+            userClientUpdateDto.setPassportNumber(passportNo);
+        }
+
+        RequestBody body = RequestBody.create(objectMapper.writeValueAsString(userClientUpdateDto), JSON);
+
+        Request request = new Request.Builder()
+                .url(URL + "/users/client")
+                .header("Authorization", "Bearer " + UserData.getInstance().getToken())
+                .put(body)
+                .build();
+
+        Call call = client.newCall(request);
+        Response response = call.execute();
+
+        if(response.code() == 200){
+            return;
+        }
+
+        throw new RuntimeException("Profile Update Failed");
+    }
+
+    //todo editManager (copy-paste)
 }

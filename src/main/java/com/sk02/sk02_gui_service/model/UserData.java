@@ -24,6 +24,14 @@ public class UserData {
         return instance;
     }
 
+    public void logOut(){
+        token = null;
+        role = null;
+        id = null;
+        email = null;
+        username = null;
+    }
+
     public String getToken() {
         return token;
     }

@@ -144,6 +144,7 @@ public class RegisterView extends Stage {
         btnCancel.setOnAction(actionEvent -> {
             this.close();
             LoginView.getInstance().show();
+            this.clean();
         });
 
         HBox hbButtons = new HBox();
@@ -177,6 +178,17 @@ public class RegisterView extends Stage {
                 lblUserSensitive.setText("Hotel Name:");
             }
         });
+    }
+
+    public void clean(){
+        tfEmail.clear();
+        tfFirstName.clear();
+        tfPassword.clear();
+        tfLastName.clear();
+        tfUsername.clear();
+        tfPhone.clear();
+        tfUserSensitive.clear();
+        dpBirthday.getEditor().clear();
     }
 
     public TextField getTfFirstName() {

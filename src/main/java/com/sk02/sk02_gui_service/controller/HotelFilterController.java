@@ -4,6 +4,7 @@ import com.sk02.sk02_gui_service.restclient.clients.reservation.HotelRestClient;
 import com.sk02.sk02_gui_service.restclient.dto.hotel.HotelFilterViewDto;
 import com.sk02.sk02_gui_service.view.client.ClientView;
 import com.sk02.sk02_gui_service.view.panes.HotelPane;
+import com.sk02.sk02_gui_service.view.shared.ErrorDialog;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
@@ -29,12 +30,17 @@ public class HotelFilterController implements EventHandler<ActionEvent> {
         String name = ClientView.getInstance().getTfHotel().getText();
         String city = ClientView.getInstance().getTfCity().getText();
 
-        LocalDate localDate = ClientView.getInstance().getDpStart().getValue();
-        Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
+        LocalDate localDateStart = ClientView.getInstance().getDpStart().getValue();
+        LocalDate localDateEnd = ClientView.getInstance().getDpEnd().getValue();
+        if(localDateStart == null || localDateEnd == null){
+            new ErrorDialog("You must define time period!").show();
+            return;
+        }
+
+        Instant instant = Instant.from(localDateStart.atStartOfDay(ZoneId.systemDefault()));
         Date dateStart = Date.from(instant);
 
-        localDate = ClientView.getInstance().getDpEnd().getValue();
-        instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
+        instant = Instant.from(localDateEnd.atStartOfDay(ZoneId.systemDefault()));
         Date dateEnd = Date.from(instant);
 
         String priceSort = (String) ClientView.getInstance().getCbPrice().getValue();  //bude null!!!

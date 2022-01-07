@@ -96,6 +96,11 @@ public class LoginView extends Stage {
         setScene(scene);
     }
 
+    public void clean(){
+        tfEmail.clear();
+        passwordField.clear();
+    }
+
     public TextField getTfEmail() {
         return tfEmail;
     }

@@ -1,5 +1,6 @@
 package com.sk02.sk02_gui_service.view.client.dialogs;
 
+import com.sk02.sk02_gui_service.controller.EditProfileClientController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -10,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class EditProfileClientDialog extends Stage {
@@ -110,19 +112,25 @@ public class EditProfileClientDialog extends Stage {
         gridPane.add(tfPassportNumber, 1, 7);
 
         //buttons
-        Button btnAdd = new Button("Add");
-        btnAdd.setMinWidth(80);
-        btnAdd.getStyleClass().add("button-blue");
+        Button btnEdit = new Button("Edit");
+        btnEdit.setMinWidth(80);
+        btnEdit.getStyleClass().add("button-blue");
+
+        btnEdit.setOnAction(new EditProfileClientController(this));
 
         Button btnCancel = new Button("Cancel");
         btnCancel.setMinWidth(80);
         btnCancel.getStyleClass().add("button-orange");
 
+        btnCancel.setOnAction(actionEvent -> {
+            this.close();
+        });
+
         HBox hbButtons = new HBox();
         hbButtons.setPadding(new Insets(10));
         hbButtons.setAlignment(Pos.CENTER);
         hbButtons.setSpacing(10);
-        hbButtons.getChildren().addAll(btnAdd, btnCancel);
+        hbButtons.getChildren().addAll(btnEdit, btnCancel);
 
         //scene settings
         BorderPane bp = new BorderPane();
@@ -134,6 +142,7 @@ public class EditProfileClientDialog extends Stage {
         setMinWidth(510);
         setMinHeight(610);
         scene.getStylesheets().add("styles/style.css");
+        initModality(Modality.APPLICATION_MODAL);
         setScene(scene);
     }
 
