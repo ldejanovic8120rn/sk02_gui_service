@@ -2,13 +2,13 @@ package com.sk02.sk02_gui_service.controller;
 
 import com.sk02.sk02_gui_service.restclient.clients.reservation.ReviewRestClient;
 import com.sk02.sk02_gui_service.restclient.dto.review.ReviewDto;
-import com.sk02.sk02_gui_service.restclient.dto.review.ReviewList;
 import com.sk02.sk02_gui_service.view.client.ClientView;
 import com.sk02.sk02_gui_service.view.panes.ReviewPane;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
 import java.io.IOException;
+import java.util.List;
 
 public class ReviewFilterController implements EventHandler<ActionEvent> {
 
@@ -26,9 +26,9 @@ public class ReviewFilterController implements EventHandler<ActionEvent> {
         String city = ClientView.getInstance().getTfCityReview().getText();
 
         try {
-            ReviewList reviewList = reviewRestClient.filterReviews(city, hotelName);
+            List<ReviewDto> reviewList = reviewRestClient.filterReviews(city, hotelName);
 
-            for(ReviewDto reviewDto: reviewList.getReviewDtos()){
+            for(ReviewDto reviewDto: reviewList){
                 ClientView.getInstance().getVbReviews().getChildren().add(new ReviewPane(reviewDto));
             }
         } catch (IOException e) {

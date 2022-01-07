@@ -8,6 +8,7 @@ import com.sk02.sk02_gui_service.restclient.clients.user.UserRestClient;
 import com.sk02.sk02_gui_service.view.LoginView;
 import com.sk02.sk02_gui_service.view.client.ClientView;
 import com.sk02.sk02_gui_service.view.manager.ManagerView;
+import com.sk02.sk02_gui_service.view.shared.ErrorDialog;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import java.io.IOException;
@@ -26,6 +27,11 @@ public class LoginController implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent actionEvent) {
         try {
+            if(LoginView.getInstance().getTfEmail().getText().isEmpty() || LoginView.getInstance().getPasswordField().getText().isEmpty()){
+                new ErrorDialog("Wrong input!").show();
+                return;
+            }
+
             String token = userRestClient.login(LoginView.getInstance().getTfEmail().getText(), LoginView.getInstance().getPasswordField().getText());
             UserData.getInstance().setToken(token);
 

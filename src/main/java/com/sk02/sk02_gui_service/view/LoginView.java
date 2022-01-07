@@ -46,6 +46,10 @@ public class LoginView extends Stage {
 
         Label lblNotRegistered = new Label("Not registered? Click here.");
         lblNotRegistered.getStyleClass().add("registration-text");
+        lblNotRegistered.setOnMouseClicked(mouseEvent -> {
+            this.close();
+            RegisterView.getInstance().show();
+        });
 
         //credentials info vbox
         VBox vbLabels = new VBox();

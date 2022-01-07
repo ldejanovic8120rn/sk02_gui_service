@@ -15,9 +15,9 @@ public class HotelFilterViewDto{
     private String roomTypeCategory;
     private String roomTypePrice;
 
-    @JsonFormat(pattern = "dd/MM/yyyy")
+    //@JsonFormat(pattern = "dd/MM/yyyy")
     private Date startDate;
-    @JsonFormat(pattern = "dd/MM/yyyy")
+    //@JsonFormat(pattern = "dd/MM/yyyy")
     private Date endDate;
 
     public String getHotelId() {

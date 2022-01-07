@@ -1,15 +1,15 @@
 package com.sk02.sk02_gui_service.restclient.clients.reservation;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sk02.sk02_gui_service.model.UserData;
-import com.sk02.sk02_gui_service.restclient.dto.hotel.HotelFilterList;
+import com.sk02.sk02_gui_service.restclient.dto.review.ReviewDto;
 import com.sk02.sk02_gui_service.restclient.dto.review.ReviewFilterDto;
-import com.sk02.sk02_gui_service.restclient.dto.review.ReviewList;
 import okhttp3.*;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 public class ReviewRestClient {
 
@@ -20,7 +20,7 @@ public class ReviewRestClient {
     ObjectMapper objectMapper = new ObjectMapper();
 
 
-    public ReviewList filterReviews(String city, String hotelName) throws IOException {
+    public List<ReviewDto> filterReviews(String city, String hotelName) throws IOException {
         ReviewFilterDto reviewFilterDto = new ReviewFilterDto();
 
         if(city != null && !city.isEmpty()){
@@ -34,10 +34,9 @@ public class ReviewRestClient {
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
         Request request = new Request.Builder()
-                .url(URL + "/reviews")
+                .url(URL + "/reviews/filter")
                 .header("Authorization", "Bearer " + UserData.getInstance().getToken())
                 .post(body)
-                .get()
                 .build();
 
         Call call = client.newCall(request);
@@ -46,7 +45,8 @@ public class ReviewRestClient {
         if (response.code() == 200) {
             String json = response.body().string();
 
-            return objectMapper.readValue(json, ReviewList.class);
+            ReviewDto[] reviews = objectMapper.readValue(json, ReviewDto[].class);
+            return Arrays.asList(reviews);
         }
 
         throw new RuntimeException();

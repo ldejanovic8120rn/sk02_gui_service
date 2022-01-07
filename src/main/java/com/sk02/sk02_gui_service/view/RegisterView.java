@@ -1,5 +1,6 @@
 package com.sk02.sk02_gui_service.view;
 
+import com.sk02.sk02_gui_service.controller.RegisterController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -16,7 +17,7 @@ public class RegisterView extends Stage {
     private TextField tfFirstName;
     private TextField tfLastName;
     private TextField tfUsername;
-    private TextField tfPassword;
+    private PasswordField tfPassword;
     private TextField tfEmail;
     private TextField tfPhone;
     private DatePicker dpBirthday;
@@ -73,7 +74,7 @@ public class RegisterView extends Stage {
 
         //password
         Label lblPassword = new Label("Password:");
-        tfPassword = new TextField();
+        tfPassword = new PasswordField();
         tfPassword.setMaxWidth(150);
 
         //email
@@ -134,9 +135,16 @@ public class RegisterView extends Stage {
         btnRegister.setMinWidth(120);
         btnRegister.getStyleClass().add("button-blue");
 
+        btnRegister.setOnAction(new RegisterController());
+
         Button btnCancel = new Button("Cancel");
         btnCancel.setMinWidth(120);
         btnCancel.getStyleClass().add("button-orange");
+
+        btnCancel.setOnAction(actionEvent -> {
+            this.close();
+            LoginView.getInstance().show();
+        });
 
         HBox hbButtons = new HBox();
         hbButtons.setPadding(new Insets(10));

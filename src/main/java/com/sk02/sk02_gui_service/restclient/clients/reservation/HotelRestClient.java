@@ -3,13 +3,14 @@ package com.sk02.sk02_gui_service.restclient.clients.reservation;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sk02.sk02_gui_service.model.UserData;
-import com.sk02.sk02_gui_service.restclient.dto.hotel.HotelFilterList;
 import com.sk02.sk02_gui_service.restclient.dto.hotel.HotelFilterDto;
 import com.sk02.sk02_gui_service.restclient.dto.hotel.HotelFilterViewDto;
 import okhttp3.*;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 public class HotelRestClient {
 
@@ -20,7 +21,7 @@ public class HotelRestClient {
     OkHttpClient client = new OkHttpClient();
     ObjectMapper objectMapper = new ObjectMapper();
 
-    public HotelFilterList filterHotels(String name, String city, Date starDate, Date endDate, String priceSort) throws IOException {
+    public List<HotelFilterViewDto> filterHotels(String name, String city, Date starDate, Date endDate, String priceSort) throws IOException {
         HotelFilterDto hotelFilterDto = new HotelFilterDto();
 
         if (name != null && !name.isEmpty()){
@@ -55,16 +56,17 @@ public class HotelRestClient {
                 .method("POST", body)
                 .build();
 
-        System.out.println(request.body());
-        System.out.println(body);
+        //System.out.println(request.body());
+        //System.out.println(body);
         Call call = client.newCall(request);
         Response response = call.execute();
 
         if (response.code() == 200) {
             String json = response.body().string();
-            System.out.println("OVDE UDJE, ALI NE MOZE DA DESERIJALIZUJE");
+            //System.out.println("OVDE UDJE, ALI NE MOZE DA DESERIJALIZUJE");
 
-            return objectMapper.readValue(json, HotelFilterList.class);
+            HotelFilterViewDto[] filters = objectMapper.readValue(json, HotelFilterViewDto[].class);
+            return Arrays.asList(filters);
         }
 
         throw new RuntimeException();
