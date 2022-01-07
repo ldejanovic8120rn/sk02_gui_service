@@ -10,6 +10,9 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -34,14 +37,14 @@ public class HotelFilterController implements EventHandler<ActionEvent> {
         Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
         Date dateStart = Date.from(instant);
 
-        localDate = ClientView.getInstance().getDpStart().getValue();
+        localDate = ClientView.getInstance().getDpEnd().getValue();
         instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
         Date dateEnd = Date.from(instant);
 
-        String priceSort = (String) ClientView.getInstance().getCbPrice().getValue();
+        String priceSort = (String) ClientView.getInstance().getCbPrice().getValue();  //bude null!!!
 
         try {
-            HotelFilterList hotelFilterList = hotelRestClient.filterHotels(name, city, dateStart, dateEnd, priceSort);
+            HotelFilterList hotelFilterList = hotelRestClient.filterHotels(name, city, dateStart, dateEnd, "Low To High");
 
             for (HotelFilterViewDto hfv : hotelFilterList.getHotelFilterViews()){
                 ClientView.getInstance().getVbHotels().getChildren().add(new HotelPane(hfv));

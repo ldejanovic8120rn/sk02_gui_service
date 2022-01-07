@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sk02.sk02_gui_service.model.UserData;
 import com.sk02.sk02_gui_service.restclient.dto.hotel.HotelFilterList;
 import com.sk02.sk02_gui_service.restclient.dto.hotel.HotelFilterDto;
+import com.sk02.sk02_gui_service.restclient.dto.hotel.HotelFilterViewDto;
 import okhttp3.*;
 
 import java.io.IOException;
@@ -12,7 +13,8 @@ import java.util.Date;
 
 public class HotelRestClient {
 
-    public static final String URL = "http://localhost:8084/reservation-service/api";
+    //public static final String URL = "http://localhost:8084/reservation-service/api";
+    public static final String URL = "http://localhost:8082/api";
     public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
 
     OkHttpClient client = new OkHttpClient();
@@ -48,17 +50,19 @@ public class HotelRestClient {
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
         Request request = new Request.Builder()
-                .url(URL + "/filter")
+                .url(URL + "/hotels/filter")
                 .header("Authorization", "Bearer " + UserData.getInstance().getToken())
-                .post(body)
-                .get()
+                .method("POST", body)
                 .build();
 
+        System.out.println(request.body());
+        System.out.println(body);
         Call call = client.newCall(request);
         Response response = call.execute();
 
         if (response.code() == 200) {
             String json = response.body().string();
+            System.out.println("OVDE UDJE, ALI NE MOZE DA DESERIJALIZUJE");
 
             return objectMapper.readValue(json, HotelFilterList.class);
         }
