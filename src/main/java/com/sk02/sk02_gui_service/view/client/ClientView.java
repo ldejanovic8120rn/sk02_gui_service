@@ -2,6 +2,8 @@ package com.sk02.sk02_gui_service.view.client;
 
 import com.sk02.sk02_gui_service.controller.HotelFilterController;
 import com.sk02.sk02_gui_service.controller.ReviewFilterController;
+import com.sk02.sk02_gui_service.model.UserData;
+import com.sk02.sk02_gui_service.view.LoginView;
 import com.sk02.sk02_gui_service.view.client.dialogs.EditProfileClientDialog;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -55,6 +57,13 @@ public class ClientView extends Stage {
         Button btnLogout = new Button("Logout");
         btnLogout.setMinWidth(80);
         btnLogout.getStyleClass().add("button-orange");
+
+        btnLogout.setOnAction(actionEvent -> {
+            this.close();
+            UserData.getInstance().logOut();
+            LoginView.getInstance().clean();
+            LoginView.getInstance().show();
+        });
 
         HBox hbTopLeft = new HBox();
         hbTopLeft.setAlignment(Pos.CENTER_LEFT);
