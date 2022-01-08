@@ -1,5 +1,6 @@
 package com.sk02.sk02_gui_service.view.client.dialogs;
 
+import com.sk02.sk02_gui_service.restclient.dto.hotel.HotelFilterViewDto;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -8,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class ReservationDialog extends Stage {
@@ -18,7 +20,10 @@ public class ReservationDialog extends Stage {
     private Label lblCategory;
     private Label lblPrice;
 
-    public ReservationDialog(){
+    private HotelFilterViewDto hotelFilterViewDto;
+
+    public ReservationDialog(HotelFilterViewDto hotelFilterViewDto){
+        this.hotelFilterViewDto = hotelFilterViewDto;
         init();
     }
 
@@ -26,7 +31,7 @@ public class ReservationDialog extends Stage {
         setTitle("Reserve Accommodation");
 
         //title
-        lblHotel = new Label();
+        lblHotel = new Label(hotelFilterViewDto.getHotelName());
         lblHotel.getStyleClass().add("title");
         HBox hbTitle = new HBox();
         hbTitle.setAlignment(Pos.CENTER);
@@ -34,11 +39,10 @@ public class ReservationDialog extends Stage {
         hbTitle.getChildren().add(lblHotel);
 
         //hotel info
-        //TODO
-        lblDescription = new Label();
-        lblCity = new Label();
-        lblCategory = new Label();
-        lblPrice = new Label();
+        lblDescription = new Label(hotelFilterViewDto.getHotelDescription());
+        lblCity = new Label(hotelFilterViewDto.getHotelCity());
+        lblCategory = new Label(hotelFilterViewDto.getRoomTypeCategory());
+        lblPrice = new Label(hotelFilterViewDto.getRoomTypePrice());
 
         //center vb
         VBox vbMain = new VBox();
@@ -51,9 +55,16 @@ public class ReservationDialog extends Stage {
         btnReserve.setMinWidth(100);
         btnReserve.getStyleClass().add("button-blue");
 
+        //TODO
+        //btnReserve.setOnAction();
+
         Button btnCancel = new Button("Cancel");
         btnCancel.setMinWidth(100);
         btnCancel.getStyleClass().add("button-orange");
+
+        btnCancel.setOnAction(actionEvent -> {
+            this.close();
+        });
 
         HBox hbButtons = new HBox();
         hbButtons.setPadding(new Insets(10));
@@ -72,6 +83,7 @@ public class ReservationDialog extends Stage {
         setMinHeight(410);
         scene.getStylesheets().add("styles/style.css");
         setScene(scene);
+        initModality(Modality.APPLICATION_MODAL);
     }
 
     public Label getLblHotel() {

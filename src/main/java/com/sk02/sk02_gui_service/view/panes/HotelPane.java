@@ -1,6 +1,7 @@
 package com.sk02.sk02_gui_service.view.panes;
 
 import com.sk02.sk02_gui_service.restclient.dto.hotel.HotelFilterViewDto;
+import com.sk02.sk02_gui_service.view.client.dialogs.ReservationDialog;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -48,6 +49,10 @@ public class HotelPane extends BorderPane {
 
         this.setTop(vbTop);
         this.setCenter(gridPane);
+
+        this.setOnMouseClicked(mouseEvent -> {
+            new ReservationDialog(hotelFilterViewDto).show();
+        });
     }
 
     public HotelFilterViewDto getHotelFilterViewDto() {
