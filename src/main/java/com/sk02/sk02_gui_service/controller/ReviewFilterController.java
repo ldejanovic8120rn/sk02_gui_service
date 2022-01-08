@@ -20,7 +20,6 @@ public class ReviewFilterController implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        ClientView.getInstance().getVbReviews().getChildren().removeAll();
 
         String hotelName = ClientView.getInstance().getTfHotelReview().getText();
         String city = ClientView.getInstance().getTfCityReview().getText();
@@ -28,7 +27,7 @@ public class ReviewFilterController implements EventHandler<ActionEvent> {
         try {
             List<ReviewDto> reviewList = reviewRestClient.filterReviews(city, hotelName);
 
-            ClientView.getInstance().getVbReviews().getChildren().removeAll();
+            ClientView.getInstance().getVbReviews().getChildren().clear();
             for(ReviewDto reviewDto: reviewList){
                 ClientView.getInstance().getVbReviews().getChildren().add(new ReviewPane(reviewDto));
             }

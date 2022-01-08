@@ -25,7 +25,6 @@ public class HotelFilterController implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        ClientView.getInstance().getVbHotels().getChildren().removeAll();
 
         String name = ClientView.getInstance().getTfHotel().getText();
         String city = ClientView.getInstance().getTfCity().getText();
@@ -43,15 +42,12 @@ public class HotelFilterController implements EventHandler<ActionEvent> {
         instant = Instant.from(localDateEnd.atStartOfDay(ZoneId.systemDefault()));
         Date dateEnd = Date.from(instant);
 
-        String priceSort = (String) ClientView.getInstance().getCbPrice().getValue();  //bude null!!!
-        System.out.println(priceSort);
-        //i treba da bude null, ukoliko korisnik nece nista da sortira, to se obradjuje u filterHotels metodi, i na back-u
-            //-Vuk
+        String priceSort = (String) ClientView.getInstance().getCbPrice().getValue();
 
         try {
-            List<HotelFilterViewDto> hotelFilterList = hotelRestClient.filterHotels(name, city, dateStart, dateEnd, "Low To High");
+            List<HotelFilterViewDto> hotelFilterList = hotelRestClient.filterHotels(name, city, dateStart, dateEnd, priceSort);
 
-            ClientView.getInstance().getVbHotels().getChildren().removeAll();
+            ClientView.getInstance().getVbHotels().getChildren().clear();
             for (HotelFilterViewDto hfv : hotelFilterList){
                 ClientView.getInstance().getVbHotels().getChildren().add(new HotelPane(hfv));
             }

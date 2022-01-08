@@ -98,5 +98,5 @@
 }
 
 .custom-pane-clickable:hover {
-    -fx-effect: dropshadow(gaussian , dimgrey , 10, 0, 0, 0);
+    -fx-effect: dropshadow(gaussian , #168dac , 10, 0, 0, 0);
 }
