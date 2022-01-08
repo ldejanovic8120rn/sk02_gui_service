@@ -9,6 +9,7 @@ import com.sk02.sk02_gui_service.restclient.dto.hotel.HotelFilterViewDto;
 import okhttp3.*;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -22,7 +23,7 @@ public class HotelRestClient {
     OkHttpClient client = new OkHttpClient();
     ObjectMapper objectMapper = new ObjectMapper();
 
-    public List<HotelFilterViewDto> filterHotels(String name, String city, Date starDate, Date endDate, String priceSort) throws IOException {
+    public List<HotelFilterViewDto> filterHotels(String name, String city, LocalDate starDate, LocalDate endDate, String priceSort) throws IOException {
         HotelFilterDto hotelFilterDto = new HotelFilterDto();
 
         if (name != null && !name.isEmpty()){
@@ -54,13 +55,14 @@ public class HotelRestClient {
         Request request = new Request.Builder()
                 .url(URL + "/hotels/filter")
                 .header("Authorization", "Bearer " + UserData.getInstance().getToken())
-                .method("POST", body)
+                .post(body)
                 .build();
 
 
         Call call = client.newCall(request);
         Response response = call.execute();
 
+        System.out.println(response);
         if (response.code() == 200) {
             String json = response.body().string();
 
@@ -82,6 +84,7 @@ public class HotelRestClient {
         Call call = client.newCall(request);
         Response response = call.execute();
 
+        System.out.println(response);
         if (response.code() == 200) {
             String json = response.body().string();
 

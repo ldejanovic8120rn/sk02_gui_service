@@ -24,8 +24,6 @@ public class UserRestClient {
     public String login(String email, String password) throws IOException {
 
         TokenRequestDto tokenRequestDto = new TokenRequestDto(email, password);
-        //RequestBody body = RequestBody.create(JSON, objectMapper.writeValueAsString(tokenRequestDto));
-        //TODO PROVERI POTENCIJALNO PUCANJE
         RequestBody body = RequestBody.create(objectMapper.writeValueAsString(tokenRequestDto), JSON);
 
         Request request = new Request.Builder()
@@ -36,6 +34,7 @@ public class UserRestClient {
         Call call = client.newCall(request);
         Response response = call.execute();
 
+        System.out.println(response);
         if (response.code() == 200) {
             String json = response.body().string();
             TokenResponseDto dto = objectMapper.readValue(json, TokenResponseDto.class);
@@ -68,6 +67,7 @@ public class UserRestClient {
         Call call = client.newCall(request);
         Response response = call.execute();
 
+        System.out.println(response);
         if(response.code() == 201){
             return;
         }
@@ -143,6 +143,7 @@ public class UserRestClient {
         Call call = client.newCall(request);
         Response response = call.execute();
 
+        System.out.println(response);
         if(response.code() == 200){
             return;
         }

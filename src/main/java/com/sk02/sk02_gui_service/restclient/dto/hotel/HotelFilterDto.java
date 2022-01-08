@@ -1,8 +1,10 @@
 package com.sk02.sk02_gui_service.restclient.dto.hotel;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class HotelFilterDto {
 
@@ -10,9 +12,12 @@ public class HotelFilterDto {
     private String city;
 
     @JsonFormat(pattern = "dd/MM/yyyy")
-    private Date startDate;
+    @JsonSerialize(using = LocalDateSerializer.class)
+    private LocalDate startDate;
+
     @JsonFormat(pattern = "dd/MM/yyyy")
-    private Date endDate;
+    @JsonSerialize(using = LocalDateSerializer.class)
+    private LocalDate endDate;
 
     private String priceSort;
 
@@ -32,19 +37,19 @@ public class HotelFilterDto {
         this.city = city;
     }
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 

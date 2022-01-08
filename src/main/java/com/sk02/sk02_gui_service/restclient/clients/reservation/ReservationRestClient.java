@@ -34,6 +34,7 @@ public class ReservationRestClient {
         Call call = client.newCall(request);
         Response response = call.execute();
 
+        System.out.println(response);
         if(response.code() == 201){
             return;
         }

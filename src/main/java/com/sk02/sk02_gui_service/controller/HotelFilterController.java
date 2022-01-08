@@ -45,7 +45,7 @@ public class HotelFilterController implements EventHandler<ActionEvent> {
         String priceSort = (String) ClientView.getInstance().getCbPrice().getValue();
 
         try {
-            List<HotelFilterViewDto> hotelFilterList = hotelRestClient.filterHotels(name, city, dateStart, dateEnd, priceSort);
+            List<HotelFilterViewDto> hotelFilterList = hotelRestClient.filterHotels(name, city, localDateStart, localDateEnd, priceSort);
 
             ClientView.getInstance().getVbHotels().getChildren().clear();
             for (HotelFilterViewDto hfv : hotelFilterList){

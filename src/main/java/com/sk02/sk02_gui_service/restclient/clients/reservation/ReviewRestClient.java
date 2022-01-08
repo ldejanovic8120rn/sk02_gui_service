@@ -44,6 +44,7 @@ public class ReviewRestClient {
         Call call = client.newCall(request);
         Response response = call.execute();
 
+        System.out.println(response);
         if (response.code() == 200) {
             String json = response.body().string();
 
@@ -71,6 +72,7 @@ public class ReviewRestClient {
         Call call = client.newCall(request);
         Response response = call.execute();
 
+        System.out.println(response);
         if(response.code() == 201){
             return;
         }
@@ -88,6 +90,7 @@ public class ReviewRestClient {
         Call call = client.newCall(request);
         Response response = call.execute();
 
+        System.out.println(response);
         if(response.code() == 200){
             String json = response.body().string();
 
