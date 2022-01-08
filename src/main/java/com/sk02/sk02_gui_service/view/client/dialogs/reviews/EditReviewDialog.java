@@ -1,5 +1,6 @@
 package com.sk02.sk02_gui_service.view.client.dialogs.reviews;
 
+import com.sk02.sk02_gui_service.restclient.dto.review.ReviewDto;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -17,7 +18,10 @@ public class EditReviewDialog extends Stage {
     private TextArea taComment;
     private Slider sliderRating;
 
-    public EditReviewDialog(){
+    private ReviewDto reviewDto;
+
+    public EditReviewDialog(ReviewDto reviewDto){
+        this.reviewDto = reviewDto;
         init();
     }
 
@@ -63,9 +67,15 @@ public class EditReviewDialog extends Stage {
         btnEdit.setMinWidth(80);
         btnEdit.getStyleClass().add("button-blue");
 
+        //todo edit action
+
         Button btnCancel = new Button("Cancel");
         btnCancel.setMinWidth(80);
         btnCancel.getStyleClass().add("button-orange");
+
+        btnCancel.setOnAction(actionEvent -> {
+            this.close();
+        });
 
         HBox hbButtons = new HBox();
         hbButtons.setPadding(new Insets(10));
@@ -92,5 +102,9 @@ public class EditReviewDialog extends Stage {
 
     public Slider getSliderRating() {
         return sliderRating;
+    }
+
+    public ReviewDto getReviewDto() {
+        return reviewDto;
     }
 }

@@ -2,6 +2,7 @@ package com.sk02.sk02_gui_service.view.client;
 
 import com.sk02.sk02_gui_service.controller.HotelFilterController;
 import com.sk02.sk02_gui_service.controller.InitAddReviewController;
+import com.sk02.sk02_gui_service.controller.MyReviewsController;
 import com.sk02.sk02_gui_service.controller.ReviewFilterController;
 import com.sk02.sk02_gui_service.model.UserData;
 import com.sk02.sk02_gui_service.view.LoginView;
@@ -229,6 +230,8 @@ public class ClientView extends Stage {
         Button btnMyReviews = new Button("My Reviews");
         btnMyReviews.setMinWidth(100);
         btnMyReviews.getStyleClass().add("button-orange");
+
+        btnMyReviews.setOnAction(new MyReviewsController());
 
         hbButtonsBottomRight.getChildren().addAll(btnAddReview, btnMyReviews);
 

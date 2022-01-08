@@ -7,6 +7,7 @@ import com.sk02.sk02_gui_service.restclient.dto.hotel.BestHotelDto;
 import com.sk02.sk02_gui_service.restclient.dto.review.ReviewCreateDto;
 import com.sk02.sk02_gui_service.restclient.dto.review.ReviewDto;
 import com.sk02.sk02_gui_service.restclient.dto.review.ReviewFilterDto;
+import com.sk02.sk02_gui_service.restclient.dto.review.ReviewUpdateDto;
 import okhttp3.*;
 
 import java.io.IOException;
@@ -99,5 +100,68 @@ public class ReviewRestClient {
         }
 
         throw new RuntimeException("Finding Best Hotels Failed");
+    }
+
+    public List<ReviewDto> getClientReviews() throws IOException{
+        Request request = new Request.Builder()
+                .url(URL + "/reviews")
+                .header("Authorization", "Bearer " + UserData.getInstance().getToken())
+                .get()
+                .build();
+
+        Call call = client.newCall(request);
+        Response response = call.execute();
+
+        System.out.println(response);
+        if(response.code() == 200){
+            String json = response.body().string();
+
+            ReviewDto[] clientReviews = objectMapper.readValue(json, ReviewDto[].class);
+            return Arrays.asList(clientReviews);
+        }
+
+        throw new RuntimeException("Finding Client Reviews Failed");
+    }
+
+    public void editReview(String comment, int rate, Long id) throws IOException{
+        ReviewUpdateDto reviewUpdateDto = new ReviewUpdateDto();
+        reviewUpdateDto.setComment(comment);
+        reviewUpdateDto.setRate(rate);
+
+        RequestBody body = RequestBody.create(objectMapper.writeValueAsString(reviewUpdateDto), JSON);
+
+        Request request = new Request.Builder()
+                .url(URL + "/reviews/" + id)
+                .header("Authorization", "Bearer " + UserData.getInstance().getToken())
+                .put(body)
+                .build();
+
+        Call call = client.newCall(request);
+        Response response = call.execute();
+
+        System.out.println(response);
+        if(response.code() == 20){
+            return;
+        }
+
+        throw new RuntimeException("Editing A Review Failed");
+    }
+
+    public void deleteReview(Long reviewId) throws IOException{
+        Request request = new Request.Builder()
+                .url(URL + "/reviews/" + reviewId)
+                .header("Authorization", "Bearer " + UserData.getInstance().getToken())
+                .delete()
+                .build();
+
+        Call call = client.newCall(request);
+        Response response = call.execute();
+
+        System.out.println(response);
+        if(response.code() == 200){
+           return;
+        }
+
+        throw new RuntimeException("Deleting Review Failed");
     }
 }

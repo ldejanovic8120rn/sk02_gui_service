@@ -1,5 +1,7 @@
 package com.sk02.sk02_gui_service.view.client.dialogs.reviews;
 
+import com.sk02.sk02_gui_service.view.LoginView;
+import com.sk02.sk02_gui_service.view.client.ClientView;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -9,14 +11,24 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class MyReviewsDialog extends Stage {
 
+    private static MyReviewsDialog instance;
+
     private VBox vbReviews;
 
-    public MyReviewsDialog(){
+    private MyReviewsDialog(){
         init();
+    }
+
+    public static MyReviewsDialog getInstance(){
+        if(instance == null){
+            instance = new MyReviewsDialog();
+        }
+        return instance;
     }
 
     private void init(){
@@ -43,18 +55,15 @@ public class MyReviewsDialog extends Stage {
 
         vbReviews.minWidthProperty().bind(spReviews.widthProperty().multiply(0.95));
 
-        /*ReviewDto reviewDto = new ReviewDto();
-        reviewDto.setComment("Neki komentar ashdbas asdasd etrfs dfsd qweas as afasdasd asdasd QWQWE ASASDAS");
-        reviewDto.setHotelName("Hotel hotel");
-        reviewDto.setRate(4);
-        reviewDto.setUsername("laki");
-        for (int i = 0; i < 10; i++)
-            vbReviews.getChildren().add(new MyReviewPane(reviewDto));*/
-
         //button
         Button btnBack = new Button("Back");
         btnBack.setMinWidth(80);
         btnBack.getStyleClass().add("button-orange");
+
+        btnBack.setOnAction(actionEvent -> {
+            ClientView.getInstance().refresh();
+            this.close();
+        });
 
         HBox hbButtons = new HBox();
         hbButtons.setPadding(new Insets(10));
@@ -72,6 +81,7 @@ public class MyReviewsDialog extends Stage {
         setMinHeight(410);
         scene.getStylesheets().add("styles/style.css");
         setScene(scene);
+        initModality(Modality.APPLICATION_MODAL);
     }
 
     public VBox getVbReviews() {

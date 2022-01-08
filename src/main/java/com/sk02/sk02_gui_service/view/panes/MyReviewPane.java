@@ -1,6 +1,8 @@
 package com.sk02.sk02_gui_service.view.panes;
 
+import com.sk02.sk02_gui_service.controller.DeleteReviewController;
 import com.sk02.sk02_gui_service.restclient.dto.review.ReviewDto;
+import com.sk02.sk02_gui_service.view.client.dialogs.reviews.EditReviewDialog;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -45,9 +47,15 @@ public class MyReviewPane extends VBox {
         btnEdit.setMinWidth(100);
         btnEdit.getStyleClass().add("button-blue");
 
+        btnEdit.setOnAction(actionEvent -> {
+            new EditReviewDialog(reviewDto);
+        });
+
         Button btnDelete = new Button("Delete");
         btnDelete.setMinWidth(100);
         btnDelete.getStyleClass().add("button-orange");
+
+        btnDelete.setOnAction(new DeleteReviewController(reviewDto));
 
         hbButtons.getChildren().addAll(btnEdit, btnDelete);
 
