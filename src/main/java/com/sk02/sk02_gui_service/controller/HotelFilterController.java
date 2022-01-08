@@ -51,6 +51,7 @@ public class HotelFilterController implements EventHandler<ActionEvent> {
         try {
             List<HotelFilterViewDto> hotelFilterList = hotelRestClient.filterHotels(name, city, dateStart, dateEnd, "Low To High");
 
+            ClientView.getInstance().getVbHotels().getChildren().removeAll();
             for (HotelFilterViewDto hfv : hotelFilterList){
                 ClientView.getInstance().getVbHotels().getChildren().add(new HotelPane(hfv));
             }

@@ -28,6 +28,7 @@ public class ReviewFilterController implements EventHandler<ActionEvent> {
         try {
             List<ReviewDto> reviewList = reviewRestClient.filterReviews(city, hotelName);
 
+            ClientView.getInstance().getVbReviews().getChildren().removeAll();
             for(ReviewDto reviewDto: reviewList){
                 ClientView.getInstance().getVbReviews().getChildren().add(new ReviewPane(reviewDto));
             }
