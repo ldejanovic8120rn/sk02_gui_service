@@ -1,5 +1,6 @@
 package com.sk02.sk02_gui_service.view.client.dialogs.reviews;
 
+import com.sk02.sk02_gui_service.controller.EditReviewController;
 import com.sk02.sk02_gui_service.restclient.dto.review.ReviewDto;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -67,7 +68,7 @@ public class EditReviewDialog extends Stage {
         btnEdit.setMinWidth(80);
         btnEdit.getStyleClass().add("button-blue");
 
-        //todo edit action
+        btnEdit.setOnAction(new EditReviewController(this));
 
         Button btnCancel = new Button("Cancel");
         btnCancel.setMinWidth(80);

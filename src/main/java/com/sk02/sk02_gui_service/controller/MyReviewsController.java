@@ -23,6 +23,7 @@ public class MyReviewsController implements EventHandler<ActionEvent> {
 
         try {
             List<ReviewDto> clientReviews = reviewRestClient.getClientReviews();
+            MyReviewsDialog.getInstance().getVbReviews().getChildren().clear();
 
             for (ReviewDto reviewDto: clientReviews){
                 MyReviewsDialog.getInstance().getVbReviews().getChildren().add(new MyReviewPane(reviewDto));

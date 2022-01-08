@@ -140,7 +140,7 @@ public class ReviewRestClient {
         Response response = call.execute();
 
         System.out.println(response);
-        if(response.code() == 20){
+        if(response.code() == 200){
             return;
         }
 

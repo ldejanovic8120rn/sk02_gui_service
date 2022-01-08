@@ -48,7 +48,7 @@ public class MyReviewPane extends VBox {
         btnEdit.getStyleClass().add("button-blue");
 
         btnEdit.setOnAction(actionEvent -> {
-            new EditReviewDialog(reviewDto);
+            new EditReviewDialog(reviewDto).show();
         });
 
         Button btnDelete = new Button("Delete");
