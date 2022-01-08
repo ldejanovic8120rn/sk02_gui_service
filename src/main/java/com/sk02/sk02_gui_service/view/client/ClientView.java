@@ -1,10 +1,12 @@
 package com.sk02.sk02_gui_service.view.client;
 
 import com.sk02.sk02_gui_service.controller.HotelFilterController;
+import com.sk02.sk02_gui_service.controller.InitAddReviewController;
 import com.sk02.sk02_gui_service.controller.ReviewFilterController;
 import com.sk02.sk02_gui_service.model.UserData;
 import com.sk02.sk02_gui_service.view.LoginView;
 import com.sk02.sk02_gui_service.view.client.dialogs.EditProfileClientDialog;
+import com.sk02.sk02_gui_service.view.client.dialogs.reviews.AddReviewDialog;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -33,6 +35,8 @@ public class ClientView extends Stage {
 
     private TextField tfHotelReview;
     private TextField tfCityReview;
+
+    private Label lblTopHotelsList;
 
     private Button btnFilterHotels;
     private Button btnFilterReviews;
@@ -183,11 +187,19 @@ public class ClientView extends Stage {
 
         btnFilterReviews.setOnAction(new ReviewFilterController());
 
+        Label lblTopHotels = new Label("Top Hotels:");
+        lblTopHotelsList = new Label();
+        VBox vbTopHotels = new VBox();
+        vbTopHotels.setAlignment(Pos.CENTER);
+        vbTopHotels.setPadding(new Insets(10));
+        vbTopHotels.setSpacing(5);
+        vbTopHotels.getChildren().addAll(lblTopHotels, lblTopHotelsList);
+
         VBox vbRight = new VBox();
         vbRight.setAlignment(Pos.CENTER);
         vbRight.setPadding(new Insets(10));
         vbRight.setSpacing(5);
-        vbRight.getChildren().addAll(hbFilterRight, btnFilterReviews);
+        vbRight.getChildren().addAll(hbFilterRight, btnFilterReviews, vbTopHotels);
 
         //reviews scroll
         vbReviews = new VBox();
@@ -211,6 +223,8 @@ public class ClientView extends Stage {
         Button btnAddReview = new Button("Add Review");
         btnAddReview.setMinWidth(100);
         btnAddReview.getStyleClass().add("button-blue");
+
+        btnAddReview.setOnAction(new InitAddReviewController());
 
         Button btnMyReviews = new Button("My Reviews");
         btnMyReviews.setMinWidth(100);
@@ -281,5 +295,17 @@ public class ClientView extends Stage {
 
     public VBox getVbHotels() {
         return vbHotels;
+    }
+
+    public Label getLblTopHotelsList() {
+        return lblTopHotelsList;
+    }
+
+    public Button getBtnFilterHotels() {
+        return btnFilterHotels;
+    }
+
+    public Button getBtnFilterReviews() {
+        return btnFilterReviews;
     }
 }

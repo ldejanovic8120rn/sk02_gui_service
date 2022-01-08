@@ -3,6 +3,8 @@ package com.sk02.sk02_gui_service.restclient.clients.reservation;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sk02.sk02_gui_service.model.UserData;
+import com.sk02.sk02_gui_service.restclient.dto.hotel.BestHotelDto;
+import com.sk02.sk02_gui_service.restclient.dto.review.ReviewCreateDto;
 import com.sk02.sk02_gui_service.restclient.dto.review.ReviewDto;
 import com.sk02.sk02_gui_service.restclient.dto.review.ReviewFilterDto;
 import okhttp3.*;
@@ -50,5 +52,49 @@ public class ReviewRestClient {
         }
 
         throw new RuntimeException();
+    }
+
+    public void addReview(String comment, int rate, Long hotelId) throws IOException{
+        ReviewCreateDto reviewCreateDto = new ReviewCreateDto();
+        reviewCreateDto.setComment(comment);
+        reviewCreateDto.setHotelId(hotelId);
+        reviewCreateDto.setRate(rate);
+
+        RequestBody body = RequestBody.create(objectMapper.writeValueAsString(reviewCreateDto), JSON);
+
+        Request request = new Request.Builder()
+                .url(URL + "/reviews")
+                .header("Authorization", "Bearer " + UserData.getInstance().getToken())
+                .post(body)
+                .build();
+
+        Call call = client.newCall(request);
+        Response response = call.execute();
+
+        if(response.code() == 201){
+            return;
+        }
+
+        throw new RuntimeException("Adding A Review Failed");
+    }
+
+    public List<BestHotelDto> getBestHotels() throws IOException{
+        Request request = new Request.Builder()
+                .url(URL + "/reviews/best-hotels")
+                .header("Authorization", "Bearer " + UserData.getInstance().getToken())
+                .get()
+                .build();
+
+        Call call = client.newCall(request);
+        Response response = call.execute();
+
+        if(response.code() == 200){
+            String json = response.body().string();
+
+            BestHotelDto[] bestHotels = objectMapper.readValue(json, BestHotelDto[].class);
+            return Arrays.asList(bestHotels);
+        }
+
+        throw new RuntimeException("Finding Best Hotels Failed");
     }
 }

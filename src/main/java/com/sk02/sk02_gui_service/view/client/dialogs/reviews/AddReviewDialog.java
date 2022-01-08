@@ -1,5 +1,6 @@
 package com.sk02.sk02_gui_service.view.client.dialogs.reviews;
 
+import com.sk02.sk02_gui_service.controller.AddReviewController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -7,6 +8,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class AddReviewDialog extends Stage {
@@ -72,9 +74,15 @@ public class AddReviewDialog extends Stage {
         btnAdd.setMinWidth(80);
         btnAdd.getStyleClass().add("button-blue");
 
+        btnAdd.setOnAction(new AddReviewController(this));
+
         Button btnCancel = new Button("Cancel");
         btnCancel.setMinWidth(80);
         btnCancel.getStyleClass().add("button-orange");
+
+        btnCancel.setOnAction(actionEvent -> {
+            this.close();
+        });
 
         HBox hbButtons = new HBox();
         hbButtons.setPadding(new Insets(10));
@@ -93,6 +101,7 @@ public class AddReviewDialog extends Stage {
         setMinHeight(410);
         scene.getStylesheets().add("styles/style.css");
         setScene(scene);
+        initModality(Modality.APPLICATION_MODAL);
     }
 
     public ComboBox getCbHotels() {

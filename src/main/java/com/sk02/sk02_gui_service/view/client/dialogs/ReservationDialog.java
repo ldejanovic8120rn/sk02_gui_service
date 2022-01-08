@@ -1,5 +1,6 @@
 package com.sk02.sk02_gui_service.view.client.dialogs;
 
+import com.sk02.sk02_gui_service.controller.MakeReservationController;
 import com.sk02.sk02_gui_service.restclient.dto.hotel.HotelFilterViewDto;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -55,8 +56,7 @@ public class ReservationDialog extends Stage {
         btnReserve.setMinWidth(100);
         btnReserve.getStyleClass().add("button-blue");
 
-        //TODO
-        //btnReserve.setOnAction();
+        btnReserve.setOnAction(new MakeReservationController(this));
 
         Button btnCancel = new Button("Cancel");
         btnCancel.setMinWidth(100);
@@ -104,5 +104,9 @@ public class ReservationDialog extends Stage {
 
     public Label getLblPrice() {
         return lblPrice;
+    }
+
+    public HotelFilterViewDto getHotelFilterViewDto() {
+        return hotelFilterViewDto;
     }
 }

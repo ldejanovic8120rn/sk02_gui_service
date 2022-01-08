@@ -53,6 +53,7 @@ public class RegisterController implements EventHandler<ActionEvent> {
 
             RegisterView.getInstance().close();
             RegisterView.getInstance().clean();
+            LoginView.getInstance().clean();
             LoginView.getInstance().show();
         }catch (IOException e){
             e.printStackTrace();
