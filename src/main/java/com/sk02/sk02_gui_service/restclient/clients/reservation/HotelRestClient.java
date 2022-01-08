@@ -37,10 +37,10 @@ public class HotelRestClient {
             hotelFilterDto.setEndDate(endDate);
         }
 
-        if(priceSort.equals("Low To High")){
+        if(priceSort != null && priceSort.equals("Low To High")){
             hotelFilterDto.setPriceSort("ASC");
         }
-        else if(priceSort.equals("High To Low")){
+        else if(priceSort != null && priceSort.equals("High To Low")){
             hotelFilterDto.setPriceSort("DESC");
         }
         else {
