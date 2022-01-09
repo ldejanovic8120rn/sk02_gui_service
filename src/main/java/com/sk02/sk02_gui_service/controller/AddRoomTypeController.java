@@ -38,6 +38,7 @@ public class AddRoomTypeController implements EventHandler<ActionEvent> {
 
         try {
             roomTypeRestClient.addRoomType(ManagerView.getInstance().getHotelDto().getId(), price, category, lowerBound, upperBound);
+            RoomTypesDialog.getInstance().clean();
 
             List<RoomTypeDto> roomTypes = roomTypeRestClient.getRoomTypesByHotel(ManagerView.getInstance().getHotelDto().getId());
 

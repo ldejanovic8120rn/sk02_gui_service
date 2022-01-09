@@ -143,6 +143,13 @@ public class RoomTypesDialog extends Stage {
         initModality(Modality.APPLICATION_MODAL);
     }
 
+    public void clean(){
+        tfCategory.clear();
+        tfPrice.clear();
+        tfLowerB.clear();
+        tfUpperB.clear();
+    }
+
     public TextField getTfCategory() {
         return tfCategory;
     }
