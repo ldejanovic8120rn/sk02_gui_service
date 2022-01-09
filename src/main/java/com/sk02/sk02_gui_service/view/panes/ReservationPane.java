@@ -19,6 +19,8 @@ public class ReservationPane extends VBox {
     }
 
     private void init(){
+        this.getStyleClass().add("custom-pane");
+
         setAlignment(Pos.CENTER);
         setPadding(new Insets(20));
         setSpacing(10);
@@ -44,6 +46,6 @@ public class ReservationPane extends VBox {
 
         btnCancel.setOnAction(new CancelReservationController(reservationDto));
 
-        this.getChildren().addAll(lblHotel, lblCategory, hbDates, lblPrice);
+        this.getChildren().addAll(lblHotel, lblCategory, hbDates, lblPrice, btnCancel);
     }
 }
