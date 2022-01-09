@@ -1,5 +1,7 @@
 package com.sk02.sk02_gui_service.view.shared;
 
+import com.sk02.sk02_gui_service.controller.FilterNotificationsController;
+import com.sk02.sk02_gui_service.view.client.ClientView;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -7,18 +9,30 @@ import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class NotificationsDialog extends Stage {
+
+    private static NotificationsDialog instance;
 
     private TextField tfType;
     private DatePicker dpStart;
     private DatePicker dpEnd;
 
+    private Button btnFilter;
+
     private VBox vbNotifications;
 
-    public NotificationsDialog(){
+    private NotificationsDialog(){
         init();
+    }
+
+    public static NotificationsDialog getInstance(){
+        if(instance == null){
+            instance = new NotificationsDialog();
+        }
+        return instance;
     }
 
     private void init(){
@@ -47,9 +61,11 @@ public class NotificationsDialog extends Stage {
         hbFilter.getChildren().addAll(lblType, tfType, lblDate, dpStart, lblDash, dpEnd);
 
         //filter button
-        Button btnFilter = new Button("Filter Notifications");
+        btnFilter = new Button("Filter Notifications");
         btnFilter.setMinWidth(100);
         btnFilter.getStyleClass().add("button-blue");
+
+        btnFilter.setOnAction(new FilterNotificationsController());
 
         HBox hbFilterButton = new HBox();
         hbFilterButton.setPadding(new Insets(10));
@@ -81,6 +97,11 @@ public class NotificationsDialog extends Stage {
         btnBack.setMinWidth(80);
         btnBack.getStyleClass().add("button-orange");
 
+        btnBack.setOnAction(actionEvent -> {
+            this.close();
+            clean();
+        });
+
         HBox hbButtons = new HBox();
         hbButtons.setPadding(new Insets(10));
         hbButtons.setAlignment(Pos.CENTER);
@@ -97,6 +118,17 @@ public class NotificationsDialog extends Stage {
         setMinHeight(410);
         scene.getStylesheets().add("styles/style.css");
         setScene(scene);
+        initModality(Modality.APPLICATION_MODAL);
+    }
+
+    public void clean(){
+        tfType.clear();
+        dpEnd.getEditor().clear();
+        dpStart.getEditor().clear();
+    }
+
+    public void refresh(){
+        btnFilter.fire();
     }
 
     public TextField getTfType() {

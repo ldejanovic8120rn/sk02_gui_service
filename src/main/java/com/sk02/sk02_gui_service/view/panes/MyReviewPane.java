@@ -28,7 +28,7 @@ public class MyReviewPane extends VBox {
         this.setAlignment(Pos.CENTER_LEFT);
 
         Label lblUsername = new Label(reviewDto.getUsername());
-        lblUsername.getStyleClass().add("title-pane");
+        lblUsername.getStyleClass().add("title-pane-clickable");
 
         TextArea taComment = new TextArea(reviewDto.getComment());
         taComment.maxWidthProperty().bind(this.widthProperty().multiply(0.8));

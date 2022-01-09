@@ -8,6 +8,7 @@ import com.sk02.sk02_gui_service.model.UserData;
 import com.sk02.sk02_gui_service.view.LoginView;
 import com.sk02.sk02_gui_service.view.client.dialogs.EditProfileClientDialog;
 import com.sk02.sk02_gui_service.view.client.dialogs.reviews.AddReviewDialog;
+import com.sk02.sk02_gui_service.view.shared.NotificationsDialog;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -82,6 +83,11 @@ public class ClientView extends Stage {
         Image image = new Image("icons/notif_icon.png");
         ImageView icon = new ImageView(image);
         btnNotifications.setGraphic(icon);
+
+        btnNotifications.setOnAction(actionEvent -> {
+            NotificationsDialog.getInstance().refresh();
+            NotificationsDialog.getInstance().show();
+        });
 
         Button btnReservations = new Button("My Reservations");
         btnReservations.setMinWidth(80);
