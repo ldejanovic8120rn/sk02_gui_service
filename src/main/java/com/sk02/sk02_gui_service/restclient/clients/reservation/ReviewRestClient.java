@@ -53,7 +53,7 @@ public class ReviewRestClient {
             return Arrays.asList(reviews);
         }
 
-        throw new RuntimeException();
+        throw new RuntimeException("Could Not FIlter Reviews");
     }
 
     public void addReview(String comment, int rate, Long hotelId) throws IOException{

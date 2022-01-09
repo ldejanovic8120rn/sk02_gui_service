@@ -19,6 +19,8 @@ public class ManagerUtils {
         try {
             HotelDto hotel = hotelRestClient.getManagerHotel();
 
+            ManagerView.getInstance().setHotelDto(hotel);
+
             ManagerView.getInstance().clean();
             ManagerView.getInstance().getLblName().setText(hotel.getName());
             ManagerView.getInstance().getLblCity().setText(hotel.getCity());

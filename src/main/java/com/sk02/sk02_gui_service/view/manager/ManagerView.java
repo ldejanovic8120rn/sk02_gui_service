@@ -1,7 +1,9 @@
 package com.sk02.sk02_gui_service.view.manager;
 
 import com.sk02.sk02_gui_service.controller.ReservationsController;
+import com.sk02.sk02_gui_service.controller.RoomTypesController;
 import com.sk02.sk02_gui_service.model.UserData;
+import com.sk02.sk02_gui_service.restclient.dto.hotel.HotelDto;
 import com.sk02.sk02_gui_service.utils.ManagerUtils;
 import com.sk02.sk02_gui_service.view.LoginView;
 import com.sk02.sk02_gui_service.view.manager.dialogs.EditProfileManagerDialog;
@@ -22,6 +24,8 @@ public class ManagerView extends Stage {
 
     private static ManagerView instance;
     private ManagerUtils utils;
+
+    private HotelDto hotelDto;
 
     private Label lblName;
     private Label lblDescription;
@@ -115,6 +119,8 @@ public class ManagerView extends Stage {
         btnRoomTypes.setMinWidth(100);
         btnRoomTypes.getStyleClass().add("button-orange");
 
+        btnRoomTypes.setOnAction(new RoomTypesController());
+
         Button btnEditHotel = new Button("Edit Hotel");
         btnEditHotel.setMinWidth(100);
         btnEditHotel.getStyleClass().add("button-blue");
@@ -158,5 +164,13 @@ public class ManagerView extends Stage {
 
     public Label getLblCity() {
         return lblCity;
+    }
+
+    public HotelDto getHotelDto() {
+        return hotelDto;
+    }
+
+    public void setHotelDto(HotelDto hotelDto) {
+        this.hotelDto = hotelDto;
     }
 }

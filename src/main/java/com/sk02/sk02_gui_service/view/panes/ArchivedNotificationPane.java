@@ -16,6 +16,8 @@ public class ArchivedNotificationPane extends GridPane {
     }
 
     private void init(){
+        this.getStyleClass().add("custom-pane");
+
         setAlignment(Pos.CENTER_LEFT);
         setHgap(10);
         setVgap(10);

@@ -1,5 +1,8 @@
 package com.sk02.sk02_gui_service.view.manager.dialogs;
 
+import com.sk02.sk02_gui_service.controller.AddRoomTypeController;
+import com.sk02.sk02_gui_service.utils.ManagerUtils;
+import com.sk02.sk02_gui_service.view.manager.ManagerView;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -12,6 +15,8 @@ import javafx.stage.Stage;
 
 public class RoomTypesDialog extends Stage {
 
+    private static RoomTypesDialog instance;
+
     private TextField tfCategory;
     private TextField tfPrice;
     private TextField tfLowerB;
@@ -19,8 +24,15 @@ public class RoomTypesDialog extends Stage {
 
     private VBox vbRoomTypes;
 
-    public RoomTypesDialog(){
+    private RoomTypesDialog(){
         init();
+    }
+
+    public static RoomTypesDialog getInstance(){
+        if(instance == null){
+            instance = new RoomTypesDialog();
+        }
+        return instance;
     }
 
     private void init(){
@@ -57,6 +69,10 @@ public class RoomTypesDialog extends Stage {
         Button btnBack = new Button("Back");
         btnBack.setMinWidth(80);
         btnBack.getStyleClass().add("button-orange");
+
+        btnBack.setOnAction(actionEvent -> {
+            this.close();
+        });
 
         HBox hbBack = new HBox();
         hbBack.setAlignment(Pos.CENTER_RIGHT);
@@ -103,6 +119,8 @@ public class RoomTypesDialog extends Stage {
         Button btnAddType = new Button("Add Type");
         btnAddType.setMinWidth(80);
         btnAddType.getStyleClass().add("button-blue");
+
+        btnAddType.setOnAction(new AddRoomTypeController());
 
         VBox vbRight = new VBox();
         vbRight.setAlignment(Pos.TOP_CENTER);

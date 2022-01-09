@@ -1,5 +1,6 @@
 package com.sk02.sk02_gui_service.view.manager.dialogs;
 
+import com.sk02.sk02_gui_service.restclient.dto.roomtype.RoomTypeDto;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -9,16 +10,20 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class EditRoomTypeDialog extends Stage {
+
+    private RoomTypeDto roomTypeDto;
 
     private TextField tfPrice;
     private TextField tfCategory;
     private TextField tfBoundL;
     private TextField tfBoundU;
 
-    public EditRoomTypeDialog(){
+    public EditRoomTypeDialog(RoomTypeDto roomTypeDto){
+        this.roomTypeDto = roomTypeDto;
         init();
     }
 
@@ -76,6 +81,10 @@ public class EditRoomTypeDialog extends Stage {
         btnCancel.setMinWidth(80);
         btnCancel.getStyleClass().add("button-orange");
 
+        btnCancel.setOnAction(actionEvent -> {
+            this.close();
+        });
+
         HBox hbButtons = new HBox();
         hbButtons.setPadding(new Insets(10));
         hbButtons.setAlignment(Pos.CENTER);
@@ -93,6 +102,7 @@ public class EditRoomTypeDialog extends Stage {
         setMinHeight(350);
         scene.getStylesheets().add("styles/style.css");
         setScene(scene);
+        initModality(Modality.APPLICATION_MODAL);
     }
 
     public TextField getTfPrice() {
