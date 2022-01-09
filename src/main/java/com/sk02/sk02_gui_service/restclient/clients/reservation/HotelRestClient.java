@@ -118,9 +118,16 @@ public class HotelRestClient {
 
     public void updateHotel(Long hotelId, String name, String description, String city) throws IOException{
         HotelUpdateDto hotelUpdateDto = new HotelUpdateDto();
-        hotelUpdateDto.setName(name);
-        hotelUpdateDto.setDescription(description);
-        hotelUpdateDto.setCity(city);
+
+        if(name != null && !name.isEmpty()){
+            hotelUpdateDto.setName(name);
+        }
+        if(description != null && !description.isEmpty()){
+            hotelUpdateDto.setDescription(description);
+        }
+        if(city != null && !city.isEmpty()){
+            hotelUpdateDto.setCity(city);
+        }
 
         RequestBody body = RequestBody.create(objectMapper.writeValueAsString(hotelUpdateDto), JSON);
 

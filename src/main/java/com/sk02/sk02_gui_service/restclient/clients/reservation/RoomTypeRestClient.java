@@ -87,7 +87,10 @@ public class RoomTypeRestClient {
 
     public void updateRoomType(Long hotelId, double price, String category, int lowerBound, int upperBound) throws IOException{
         RoomTypeUpdateDto roomTypeUpdateDto = new RoomTypeUpdateDto();
-        roomTypeUpdateDto.setCategory(category);
+
+        if(category != null && !category.isEmpty()){
+            roomTypeUpdateDto.setCategory(category);
+        }
         roomTypeUpdateDto.setPrice(price);
         roomTypeUpdateDto.setLowerBound(lowerBound);
         roomTypeUpdateDto.setUpperBound(upperBound);
