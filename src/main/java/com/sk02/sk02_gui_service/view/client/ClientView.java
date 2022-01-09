@@ -194,6 +194,8 @@ public class ClientView extends Stage {
 
         Label lblTopHotels = new Label("Top Hotels:");
         lblTopHotelsList = new Label();
+        lblTopHotels.setAlignment(Pos.CENTER);
+
         VBox vbTopHotels = new VBox();
         vbTopHotels.setAlignment(Pos.CENTER);
         vbTopHotels.setPadding(new Insets(10));

@@ -38,7 +38,7 @@ public class ReviewFilterController implements EventHandler<ActionEvent> {
             ClientView.getInstance().getLblTopHotelsList().setText("");
             StringBuilder bestHotelsSB = new StringBuilder();
             for (BestHotelDto bestHotelDto: bestHotels){
-                bestHotelsSB.append(bestHotelDto.getHotelName()).append(" ").append(bestHotelDto.getRate()).append(" ");
+                bestHotelsSB.append(bestHotelDto.getHotelName()).append(" ").append(bestHotelDto.getRate()).append("\n");
             }
             String bestHotel = bestHotelsSB.toString();
             ClientView.getInstance().getLblTopHotelsList().setText(bestHotel);

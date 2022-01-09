@@ -6,6 +6,7 @@ import com.sk02.sk02_gui_service.model.UserData;
 import com.sk02.sk02_gui_service.restclient.dto.hotel.HotelDto;
 import com.sk02.sk02_gui_service.utils.ManagerUtils;
 import com.sk02.sk02_gui_service.view.LoginView;
+import com.sk02.sk02_gui_service.view.manager.dialogs.EditHotelDialog;
 import com.sk02.sk02_gui_service.view.manager.dialogs.EditProfileManagerDialog;
 import com.sk02.sk02_gui_service.view.shared.NotificationsDialog;
 import javafx.geometry.Insets;
@@ -124,6 +125,10 @@ public class ManagerView extends Stage {
         Button btnEditHotel = new Button("Edit Hotel");
         btnEditHotel.setMinWidth(100);
         btnEditHotel.getStyleClass().add("button-blue");
+
+        btnEditHotel.setOnAction(actionEvent -> {
+            new EditHotelDialog().show();
+        });
 
         VBox vbButtons = new VBox();
         vbButtons.setAlignment(Pos.CENTER);

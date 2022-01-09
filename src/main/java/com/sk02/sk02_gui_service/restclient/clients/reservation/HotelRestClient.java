@@ -6,6 +6,7 @@ import com.sk02.sk02_gui_service.model.UserData;
 import com.sk02.sk02_gui_service.restclient.dto.hotel.HotelDto;
 import com.sk02.sk02_gui_service.restclient.dto.hotel.HotelFilterDto;
 import com.sk02.sk02_gui_service.restclient.dto.hotel.HotelFilterViewDto;
+import com.sk02.sk02_gui_service.restclient.dto.hotel.HotelUpdateDto;
 import okhttp3.*;
 
 import java.io.IOException;
@@ -113,5 +114,31 @@ public class HotelRestClient {
         }
 
         throw new RuntimeException("Getting Hotel Failed");
+    }
+
+    public void updateHotel(Long hotelId, String name, String description, String city) throws IOException{
+        HotelUpdateDto hotelUpdateDto = new HotelUpdateDto();
+        hotelUpdateDto.setName(name);
+        hotelUpdateDto.setDescription(description);
+        hotelUpdateDto.setCity(city);
+
+        RequestBody body = RequestBody.create(objectMapper.writeValueAsString(hotelUpdateDto), JSON);
+
+        Request request = new Request.Builder()
+                .url(URL + "/hotels/" + hotelId)
+                .header("Authorization", "Bearer " + UserData.getInstance().getToken())
+                .put(body)
+                .build();
+
+
+        Call call = client.newCall(request);
+        Response response = call.execute();
+
+        System.out.println(response);
+        if (response.code() == 200) {
+           return;
+        }
+
+        throw new RuntimeException("Could Not Update Hotel");
     }
 }

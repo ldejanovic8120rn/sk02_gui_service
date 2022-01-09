@@ -5,6 +5,7 @@ import com.sk02.sk02_gui_service.model.UserData;
 import com.sk02.sk02_gui_service.restclient.dto.review.ReviewDto;
 import com.sk02.sk02_gui_service.restclient.dto.roomtype.RoomTypeCreateDto;
 import com.sk02.sk02_gui_service.restclient.dto.roomtype.RoomTypeDto;
+import com.sk02.sk02_gui_service.restclient.dto.roomtype.RoomTypeUpdateDto;
 import okhttp3.*;
 
 import java.io.IOException;
@@ -82,5 +83,31 @@ public class RoomTypeRestClient {
         }
 
         throw new RuntimeException("Creating Room Type Failed");
+    }
+
+    public void updateRoomType(Long hotelId, double price, String category, int lowerBound, int upperBound) throws IOException{
+        RoomTypeUpdateDto roomTypeUpdateDto = new RoomTypeUpdateDto();
+        roomTypeUpdateDto.setCategory(category);
+        roomTypeUpdateDto.setPrice(price);
+        roomTypeUpdateDto.setLowerBound(lowerBound);
+        roomTypeUpdateDto.setUpperBound(upperBound);
+
+        RequestBody body = RequestBody.create(objectMapper.writeValueAsString(roomTypeUpdateDto), JSON);
+
+        Request request = new Request.Builder()
+                .url(URL + "/room-types/" + hotelId)
+                .header("Authorization", "Bearer " + UserData.getInstance().getToken())
+                .put(body)
+                .build();
+
+        Call call = client.newCall(request);
+        Response response = call.execute();
+
+        System.out.println(response);
+        if(response.code() == 200){
+            return;
+        }
+
+        throw new RuntimeException("Editing Room Type Failed");
     }
 }

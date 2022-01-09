@@ -1,5 +1,6 @@
 package com.sk02.sk02_gui_service.view.manager.dialogs;
 
+import com.sk02.sk02_gui_service.controller.EditRoomTypeController;
 import com.sk02.sk02_gui_service.restclient.dto.roomtype.RoomTypeDto;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -77,6 +78,8 @@ public class EditRoomTypeDialog extends Stage {
         btnEdit.setMinWidth(80);
         btnEdit.getStyleClass().add("button-blue");
 
+        btnEdit.setOnAction(new EditRoomTypeController(this));
+
         Button btnCancel = new Button("Cancel");
         btnCancel.setMinWidth(80);
         btnCancel.getStyleClass().add("button-orange");
@@ -119,5 +122,9 @@ public class EditRoomTypeDialog extends Stage {
 
     public TextField getTfBoundU() {
         return tfBoundU;
+    }
+
+    public RoomTypeDto getRoomTypeDto() {
+        return roomTypeDto;
     }
 }

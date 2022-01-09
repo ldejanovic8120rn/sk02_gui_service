@@ -1,5 +1,6 @@
 package com.sk02.sk02_gui_service.view.manager.dialogs;
 
+import com.sk02.sk02_gui_service.controller.EditHotelController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -9,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class EditHotelDialog extends Stage {
@@ -66,9 +68,15 @@ public class EditHotelDialog extends Stage {
         btnEdit.setMinWidth(80);
         btnEdit.getStyleClass().add("button-blue");
 
+        btnEdit.setOnAction(new EditHotelController(this));
+
         Button btnCancel = new Button("Cancel");
         btnCancel.setMinWidth(80);
         btnCancel.getStyleClass().add("button-orange");
+
+        btnCancel.setOnAction(actionEvent -> {
+            this.close();
+        });
 
         HBox hbButtons = new HBox();
         hbButtons.setPadding(new Insets(10));
@@ -87,6 +95,7 @@ public class EditHotelDialog extends Stage {
         setMinHeight(310);
         scene.getStylesheets().add("styles/style.css");
         setScene(scene);
+        initModality(Modality.APPLICATION_MODAL);
     }
 
     public TextField getTfName() {
