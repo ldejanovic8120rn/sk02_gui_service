@@ -36,6 +36,7 @@ public class RoomTypePane extends VBox {
 
         HBox hbButtons = new HBox();
         hbButtons.setSpacing(10);
+        hbButtons.setAlignment(Pos.CENTER);
 
         Button btnEdit = new Button("Edit");
         btnEdit.setMinWidth(80);

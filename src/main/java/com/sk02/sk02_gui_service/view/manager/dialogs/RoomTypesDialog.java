@@ -48,10 +48,9 @@ public class RoomTypesDialog extends Stage {
         hbTitle.getChildren().add(lblTitleLeft);
 
         //room types scroll
-        //todo igraj se sa insets i multiply
         vbRoomTypes = new VBox();
         vbRoomTypes.setAlignment(Pos.CENTER);
-        vbRoomTypes.setPadding(new Insets(40));
+        vbRoomTypes.setPadding(new Insets(50));
         vbRoomTypes.setSpacing(20);
 
         ScrollPane spRoomTypes = new ScrollPane();
@@ -59,7 +58,7 @@ public class RoomTypesDialog extends Stage {
         spRoomTypes.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         spRoomTypes.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
 
-        vbRoomTypes.minWidthProperty().bind(spRoomTypes.widthProperty().multiply(0.80));
+        vbRoomTypes.minWidthProperty().bind(spRoomTypes.widthProperty().multiply(0.95));
 
         BorderPane bpLeft = new BorderPane();
         bpLeft.setTop(hbTitle);
@@ -85,19 +84,19 @@ public class RoomTypesDialog extends Stage {
 
         Label lblCategory = new Label("Category:");
         tfCategory = new TextField();
-        tfCategory.setMaxWidth(100);
+        tfCategory.setMaxWidth(130);
 
         Label lblPrice = new Label("Price:");
         tfPrice = new TextField();
-        tfPrice.setMaxWidth(100);
+        tfPrice.setMaxWidth(130);
 
         Label lblLowerB = new Label("Lower Bound:");
         tfLowerB = new TextField();
-        tfLowerB.setMaxWidth(100);
+        tfLowerB.setMaxWidth(130);
 
         Label lblUpperB = new Label("Upper Bound:");
         tfUpperB = new TextField();
-        tfUpperB.setMaxWidth(100);
+        tfUpperB.setMaxWidth(130);
 
         GridPane gridPane = new GridPane();
         gridPane.setAlignment(Pos.CENTER);
@@ -132,8 +131,8 @@ public class RoomTypesDialog extends Stage {
         SplitPane splitPane = new SplitPane();
         splitPane.getItems().addAll(bpLeft, vbRight);
         splitPane.setDividerPositions(0.6);
-        bpLeft.maxWidthProperty().bind(splitPane.widthProperty().multiply(0.6));
-        vbRight.maxWidthProperty().bind(splitPane.widthProperty().multiply(0.4));
+        bpLeft.maxWidthProperty().bind(splitPane.widthProperty().multiply(0.5));
+        vbRight.maxWidthProperty().bind(splitPane.widthProperty().multiply(0.5));
 
         Scene scene = new Scene(splitPane, 1000, 600);
         setMinWidth(1010);
