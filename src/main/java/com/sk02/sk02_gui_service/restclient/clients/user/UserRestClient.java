@@ -2,11 +2,13 @@ package com.sk02.sk02_gui_service.restclient.clients.user;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sk02.sk02_gui_service.model.UserData;
+import com.sk02.sk02_gui_service.restclient.dto.hotel.HotelDto;
 import com.sk02.sk02_gui_service.restclient.dto.token.TokenRequestDto;
 import com.sk02.sk02_gui_service.restclient.dto.token.TokenResponseDto;
 import com.sk02.sk02_gui_service.restclient.dto.user.UserClientCreateDto;
 import com.sk02.sk02_gui_service.restclient.dto.user.UserClientUpdateDto;
 import com.sk02.sk02_gui_service.restclient.dto.user.UserManagerCreateDto;
+import com.sk02.sk02_gui_service.restclient.dto.user.UserManagerUpdateDto;
 import okhttp3.*;
 
 import java.io.IOException;
@@ -151,5 +153,50 @@ public class UserRestClient {
         throw new RuntimeException("Profile Update Failed");
     }
 
-    //todo editManager (copy-paste)
+    public void editManager(String firstName, String lastName, String username, String password, String email, String phone, Date birthday, String hotelName) throws IOException{
+        UserManagerUpdateDto userManagerUpdateDto = new UserManagerUpdateDto();
+
+        if(firstName != null && !firstName.isEmpty()){
+            userManagerUpdateDto.setFirstName(firstName);
+        }
+        if(lastName != null && !lastName.isEmpty()){
+            userManagerUpdateDto.setLastName(lastName);
+        }
+        if(username != null && !username.isEmpty()){
+            userManagerUpdateDto.setUsername(username);
+        }
+        if(password != null && !password.isEmpty()){
+            userManagerUpdateDto.setPassword(password);
+        }
+        if(email != null && !email.isEmpty()){
+            userManagerUpdateDto.setEmail(email);
+        }
+        if(phone != null && !phone.isEmpty()){
+            userManagerUpdateDto.setPhone(phone);
+        }
+        if(birthday != null){
+            userManagerUpdateDto.setBirthday(birthday);
+        }
+        if(hotelName != null && !hotelName.isEmpty()){
+            userManagerUpdateDto.setHotelName(hotelName);
+        }
+
+        RequestBody body = RequestBody.create(objectMapper.writeValueAsString(userManagerUpdateDto), JSON);
+
+        Request request = new Request.Builder()
+                .url(URL + "/users/manager")
+                .header("Authorization", "Bearer " + UserData.getInstance().getToken())
+                .put(body)
+                .build();
+
+        Call call = client.newCall(request);
+        Response response = call.execute();
+
+        System.out.println(response);
+        if(response.code() == 200){
+            return;
+        }
+
+        throw new RuntimeException("Profile Update Failed");
+    }
 }

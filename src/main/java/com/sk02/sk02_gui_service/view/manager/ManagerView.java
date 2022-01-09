@@ -1,7 +1,11 @@
 package com.sk02.sk02_gui_service.view.manager;
 
+import com.sk02.sk02_gui_service.controller.ReservationsController;
 import com.sk02.sk02_gui_service.model.UserData;
+import com.sk02.sk02_gui_service.utils.ManagerUtils;
 import com.sk02.sk02_gui_service.view.LoginView;
+import com.sk02.sk02_gui_service.view.manager.dialogs.EditProfileManagerDialog;
+import com.sk02.sk02_gui_service.view.shared.NotificationsDialog;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -17,6 +21,7 @@ import javafx.stage.Stage;
 public class ManagerView extends Stage {
 
     private static ManagerView instance;
+    private ManagerUtils utils;
 
     private Label lblName;
     private Label lblDescription;
@@ -24,6 +29,7 @@ public class ManagerView extends Stage {
 
     private ManagerView(){
         init();
+        utils = new ManagerUtils();
     }
 
     public static ManagerView getInstance(){
@@ -61,13 +67,24 @@ public class ManagerView extends Stage {
         ImageView icon = new ImageView(image);
         btnNotifications.setGraphic(icon);
 
+        btnNotifications.setOnAction(actionEvent -> {
+            NotificationsDialog.getInstance().refresh();
+            NotificationsDialog.getInstance().show();
+        });
+
         Button btnReservations = new Button("My Reservations");
         btnReservations.setMinWidth(80);
         btnReservations.getStyleClass().add("button-blue");
 
+        btnReservations.setOnAction(new ReservationsController());
+
         Button btnProfile = new Button("Edit Profile");
         btnProfile.setMinWidth(80);
         btnProfile.getStyleClass().add("button-orange");
+
+        btnProfile.setOnAction(actionEvent -> {
+            new EditProfileManagerDialog().show();
+        });
 
         HBox hbTopRight = new HBox();
         hbTopRight.setAlignment(Pos.CENTER_RIGHT);
@@ -84,9 +101,9 @@ public class ManagerView extends Stage {
         Label lblTitle = new Label("My Hotel:");
         lblTitle.getStyleClass().add("title");
 
-        lblName = new Label("Test");
-        lblCity = new Label("Proba");
-        lblDescription = new Label("ASdas asdasd asdasd asd asdasd asdf");
+        lblName = new Label();
+        lblCity = new Label();
+        lblDescription = new Label();
 
         VBox vbCenter = new VBox();
         vbCenter.setAlignment(Pos.TOP_CENTER);
@@ -119,6 +136,16 @@ public class ManagerView extends Stage {
         setMinHeight(370);
         scene.getStylesheets().add("styles/style.css");
         setScene(scene);
+    }
+
+    public void refresh(){
+        utils.refresh();
+    }
+
+    public void clean(){
+        lblDescription.setText("");
+        lblName.setText("");
+        lblCity.setText("");
     }
 
     public Label getLblName() {

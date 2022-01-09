@@ -4,6 +4,7 @@ import com.sk02.sk02_gui_service.model.UserData;
 import com.sk02.sk02_gui_service.restclient.clients.reservation.ReservationRestClient;
 import com.sk02.sk02_gui_service.restclient.dto.reservation.ReservationDto;
 import com.sk02.sk02_gui_service.view.client.dialogs.ReservationsClientDialog;
+import com.sk02.sk02_gui_service.view.manager.dialogs.ReservationsManagerDialog;
 import com.sk02.sk02_gui_service.view.panes.ReservationPane;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -35,7 +36,12 @@ public class CancelReservationController implements EventHandler<ActionEvent> {
                 }
             }
             else if (UserData.getInstance().getRole().equals("MANAGER")){
-                //TODO
+                List<ReservationDto> reservations = reservationRestClient.getManagerReservations();
+
+                ReservationsManagerDialog.getInstance().getVbReservations().getChildren().clear();
+                for (ReservationDto reservationDto: reservations){
+                    ReservationsManagerDialog.getInstance().getVbReservations().getChildren().add(new ReservationPane(reservationDto));
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();

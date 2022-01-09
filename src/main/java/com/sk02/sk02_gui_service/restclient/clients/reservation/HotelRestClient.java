@@ -94,4 +94,24 @@ public class HotelRestClient {
 
         throw new RuntimeException("Could Not Get Hotels");
     }
+
+    public HotelDto getManagerHotel() throws IOException{
+        Request request = new Request.Builder()
+                .url(URL + "/hotels/manager-hotel")
+                .header("Authorization", "Bearer " + UserData.getInstance().getToken())
+                .get()
+                .build();
+
+        Call call = client.newCall(request);
+        Response response = call.execute();
+
+        System.out.println(response);
+        if(response.code() == 200){
+            String json = response.body().string();
+
+            return objectMapper.readValue(json, HotelDto.class);
+        }
+
+        throw new RuntimeException("Getting Hotel Failed");
+    }
 }

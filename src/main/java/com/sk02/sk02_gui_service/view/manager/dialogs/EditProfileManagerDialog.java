@@ -110,19 +110,23 @@ public class EditProfileManagerDialog extends Stage {
         gridPane.add(tfHotelName, 1, 7);
 
         //buttons
-        Button btnAdd = new Button("Add");
-        btnAdd.setMinWidth(80);
-        btnAdd.getStyleClass().add("button-blue");
+        Button btnEdit = new Button("Edit");
+        btnEdit.setMinWidth(80);
+        btnEdit.getStyleClass().add("button-blue");
 
         Button btnCancel = new Button("Cancel");
         btnCancel.setMinWidth(80);
         btnCancel.getStyleClass().add("button-orange");
 
+        btnCancel.setOnAction(actionEvent -> {
+            this.close();
+        });
+
         HBox hbButtons = new HBox();
         hbButtons.setPadding(new Insets(10));
         hbButtons.setAlignment(Pos.CENTER);
         hbButtons.setSpacing(10);
-        hbButtons.getChildren().addAll(btnAdd, btnCancel);
+        hbButtons.getChildren().addAll(btnEdit, btnCancel);
 
         //scene settings
         BorderPane bp = new BorderPane();

@@ -1,5 +1,6 @@
 package com.sk02.sk02_gui_service.view.manager.dialogs;
 
+import com.sk02.sk02_gui_service.view.client.dialogs.ReservationsClientDialog;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -13,10 +14,19 @@ import javafx.stage.Stage;
 
 public class ReservationsManagerDialog extends Stage {
 
+    private static ReservationsManagerDialog instance;
+
     private VBox vbReservations;
 
-    public ReservationsManagerDialog(){
+    private ReservationsManagerDialog(){
         init();
+    }
+
+    public static ReservationsManagerDialog getInstance(){
+        if(instance == null){
+            instance = new ReservationsManagerDialog();
+        }
+        return instance;
     }
 
     private void init(){
@@ -47,6 +57,10 @@ public class ReservationsManagerDialog extends Stage {
         Button btnBack = new Button("Back");
         btnBack.setMinWidth(80);
         btnBack.getStyleClass().add("button-blue");
+
+        btnBack.setOnAction(actionEvent -> {
+            this.close();
+        });
 
         HBox hbButtons = new HBox();
         hbButtons.setPadding(new Insets(10));
