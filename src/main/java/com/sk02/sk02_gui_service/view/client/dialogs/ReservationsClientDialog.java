@@ -1,5 +1,6 @@
 package com.sk02.sk02_gui_service.view.client.dialogs;
 
+import com.sk02.sk02_gui_service.view.client.ClientView;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -9,14 +10,24 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class ReservationsClientDialog extends Stage {
 
+    private static ReservationsClientDialog instance;
+
     private VBox vbReservations;
 
-    public ReservationsClientDialog(){
+    private ReservationsClientDialog(){
         init();
+    }
+
+    public static ReservationsClientDialog getInstance(){
+        if(instance == null){
+            instance = new ReservationsClientDialog();
+        }
+        return instance;
     }
 
     private void init(){
@@ -48,6 +59,10 @@ public class ReservationsClientDialog extends Stage {
         btnBack.setMinWidth(80);
         btnBack.getStyleClass().add("button-blue");
 
+        btnBack.setOnAction(actionEvent -> {
+            this.close();
+        });
+
         HBox hbButtons = new HBox();
         hbButtons.setPadding(new Insets(10));
         hbButtons.setAlignment(Pos.CENTER);
@@ -64,6 +79,7 @@ public class ReservationsClientDialog extends Stage {
         setMinHeight(410);
         scene.getStylesheets().add("styles/style.css");
         setScene(scene);
+        initModality(Modality.APPLICATION_MODAL);
     }
 
     public VBox getVbReservations() {

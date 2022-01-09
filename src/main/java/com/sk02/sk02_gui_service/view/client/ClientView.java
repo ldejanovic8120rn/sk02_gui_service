@@ -1,13 +1,9 @@
 package com.sk02.sk02_gui_service.view.client;
 
-import com.sk02.sk02_gui_service.controller.HotelFilterController;
-import com.sk02.sk02_gui_service.controller.InitAddReviewController;
-import com.sk02.sk02_gui_service.controller.MyReviewsController;
-import com.sk02.sk02_gui_service.controller.ReviewFilterController;
+import com.sk02.sk02_gui_service.controller.*;
 import com.sk02.sk02_gui_service.model.UserData;
 import com.sk02.sk02_gui_service.view.LoginView;
 import com.sk02.sk02_gui_service.view.client.dialogs.EditProfileClientDialog;
-import com.sk02.sk02_gui_service.view.client.dialogs.reviews.AddReviewDialog;
 import com.sk02.sk02_gui_service.view.shared.NotificationsDialog;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -92,6 +88,8 @@ public class ClientView extends Stage {
         Button btnReservations = new Button("My Reservations");
         btnReservations.setMinWidth(80);
         btnReservations.getStyleClass().add("button-blue");
+
+        btnReservations.setOnAction(new ReservationsController());
 
         Button btnProfile = new Button("Edit Profile");
         btnProfile.setMinWidth(80);
