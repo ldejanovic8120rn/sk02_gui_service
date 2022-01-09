@@ -43,7 +43,7 @@ public class EditRoomTypeController implements EventHandler<ActionEvent> {
         }
 
         try {
-            roomTypeRestClient.updateRoomType(ManagerView.getInstance().getHotelDto().getId(), price, category, lb, ub);
+            roomTypeRestClient.updateRoomType(dialog.getRoomTypeDto().getId(), price, category, lb, ub);
 
             RoomTypesDialog.getInstance().clean();
             List<RoomTypeDto> roomTypes = roomTypeRestClient.getRoomTypesByHotel(ManagerView.getInstance().getHotelDto().getId());
