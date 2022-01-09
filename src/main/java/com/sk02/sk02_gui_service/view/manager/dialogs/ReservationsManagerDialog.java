@@ -10,6 +10,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class ReservationsManagerDialog extends Stage {
@@ -78,6 +79,7 @@ public class ReservationsManagerDialog extends Stage {
         setMinHeight(410);
         scene.getStylesheets().add("styles/style.css");
         setScene(scene);
+        initModality(Modality.APPLICATION_MODAL);
     }
 
     public VBox getVbReservations() {

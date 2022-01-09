@@ -1,5 +1,6 @@
 package com.sk02.sk02_gui_service.view.manager.dialogs;
 
+import com.sk02.sk02_gui_service.controller.EditProfileManagerController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -10,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class EditProfileManagerDialog extends Stage {
@@ -114,6 +116,8 @@ public class EditProfileManagerDialog extends Stage {
         btnEdit.setMinWidth(80);
         btnEdit.getStyleClass().add("button-blue");
 
+        btnEdit.setOnAction(new EditProfileManagerController(this));
+
         Button btnCancel = new Button("Cancel");
         btnCancel.setMinWidth(80);
         btnCancel.getStyleClass().add("button-orange");
@@ -139,6 +143,7 @@ public class EditProfileManagerDialog extends Stage {
         setMinHeight(610);
         scene.getStylesheets().add("styles/style.css");
         setScene(scene);
+        initModality(Modality.APPLICATION_MODAL);
     }
 
     public TextField getTfFirstName() {
