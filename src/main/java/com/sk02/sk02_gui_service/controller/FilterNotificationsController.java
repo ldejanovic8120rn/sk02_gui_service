@@ -33,7 +33,7 @@ public class FilterNotificationsController implements EventHandler<ActionEvent> 
 
         try {
             List<ArchivedNotificationDto> archivedNotifications = notificationRestClient.getArchivedNotifications(type, dateStart, dateEnd);
-            NotificationsDialog.getInstance().clean();
+            NotificationsDialog.getInstance().getVbNotifications().getChildren().clear();
 
             for(ArchivedNotificationDto archivedNotificationDto: archivedNotifications){
                 NotificationsDialog.getInstance().getVbNotifications().getChildren().add(new ArchivedNotificationPane(archivedNotificationDto));

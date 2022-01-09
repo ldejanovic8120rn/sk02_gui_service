@@ -1,5 +1,6 @@
 package com.sk02.sk02_gui_service.restclient.dto.notification;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
@@ -9,8 +10,10 @@ import java.util.Date;
 public class ANFilterDto {
 
     private String type;
+    @JsonFormat(pattern = "dd/MM/yyyy")
     @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate startDate;
+    @JsonFormat(pattern = "dd/MM/yyyy")
     @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate endDate;
 
